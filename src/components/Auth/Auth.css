@@ -7,9 +7,13 @@
   justify-content: center;
   justify-items: center;
   margin: auto;
-  margin-top: 30px;
+  margin-top: 60px;
   text-align: center;
-  width: 300px;
+  width: 450px;
+}
+
+body {
+  background-color: var(--color6);
 }
 
 a {
