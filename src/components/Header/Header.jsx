@@ -15,7 +15,7 @@ export default function Header() {
   };
   return (
     <header>
-      <h2>React App</h2>
+      <h2>Recycler Connect</h2>
       {user && (
         <>
           <div className="welcome">Welcome {user.email}</div>{' '}

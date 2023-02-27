@@ -31,7 +31,7 @@ export default function Auth() {
 
   return (
     <div className="auth">
-      <h1>Welcome to REACT APP</h1>
+      <h1>Welcome to Recycler Connect!</h1>
       <div className="sign-btns">
         <NavLink to="/auth/sign-in">Sign In</NavLink>
         <NavLink to="/auth/sign-up">Sign Up</NavLink>

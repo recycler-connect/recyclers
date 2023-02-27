@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "baseUrl": "./",
+    "outDir": "./dist",
+    "strict": true, //adds a variety of rules https://www.typescriptlang.org/tsconfig#strict
+    "esModuleInterop": true, //better import statements
+    "resolveJsonModule": true, //import jsons
+    "sourceMap": true, //better debugging of output javascript
+    "lib": ["ESNext", "dom"], //use types for newest JS
+    "target": "ESNext" //output to newest JS
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

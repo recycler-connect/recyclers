@@ -5,11 +5,12 @@
 }
 
 body {
-  --color1: ;
-  --color2: ;
-  --color3: ;
-  --color4: ;
-  --color5: ;
+  --color1: rgb(31, 3, 24);
+  --color2: rgb(229, 242, 201);
+  --color3: rgb(127, 83, 75);
+  --color4: rgb(140, 112, 95);
+  --color5: rgb(315, 13, 12);
+  --color6: rgb(227, 202, 187);
   background-color: var();
   color: var();
   cursor: default;
