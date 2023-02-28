@@ -1,5 +1,5 @@
 import React from 'react';
-import MaterialFilter from '../MaterialFilter.js';
+import MaterialFilter from '../MaterialFilter';
 
 export default function Main() {
   return (

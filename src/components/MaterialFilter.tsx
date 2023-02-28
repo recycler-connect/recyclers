@@ -3,7 +3,7 @@ import './MaterialFilter.css';
 import { recyclers } from '../data';
 
 export default function MaterialFilter() {
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     //   setQuerySubmitValue(materialInputValue);
   };
@@ -13,12 +13,7 @@ export default function MaterialFilter() {
       <form className="material-filter">
         <label>
           Primary Material
-          <select
-            type="text"
-            id="primary-material"
-            className="filter-select"
-            placeholder="Primary Material"
-          >
+          <select id="primary-material" className="filter-select" placeholder="Primary Material">
             <option placeholder="Select">Select one</option>
             {/* hardcoded options for now, will remove once map works */}
             <option value="Cotton">Cotton</option>
