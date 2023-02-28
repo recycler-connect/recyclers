@@ -1,5 +1,17 @@
-export const recyclers = [
+export type RecyclerDataType = {
+  id: number;
+  company: string;
+  location?: string;
+  primary_material?: string;
+  input_material?: string;
+  output_material?: string;
+  minimum_percentage?: number | null;
+  URL?: string;
+};
+
+export const recyclers: RecyclerDataType[] = [
   {
+    id: 1,
     company: 'AmberCycle',
     location: 'North America',
     primary_material: 'Polyester',
@@ -9,6 +21,7 @@ export const recyclers = [
     URL: 'http://ambercycleinc.com',
   },
   {
+    id: 2,
     company: 'Aquafil (Econyl)',
     location: 'Europe',
     primary_material: 'Nylon',
@@ -18,6 +31,7 @@ export const recyclers = [
     URL: 'https://www.econyl.com',
   },
   {
+    id: 3,
     company: 'BlockTexx',
     location: 'Australia',
     primary_material: 'Polyester, Cotton, Polyester/Cotton Blend, Visose',
