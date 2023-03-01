@@ -9,7 +9,7 @@ export default function MaterialFilter() {
   };
   return (
     <>
-      <h1>{recyclers[0].company}</h1>
+      {/* <h1>{recyclers[0].company}</h1> */}
       <form className="material-filter">
         <label>
           Primary Material
