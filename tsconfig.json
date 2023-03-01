@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "jsx": "react",
     "module": "commonjs",
     "baseUrl": "./",
     "outDir": "./dist",
@@ -10,6 +11,6 @@
     "lib": ["ESNext", "dom"], //use types for newest JS
     "target": "ESNext" //output to newest JS
   },
-  "include": ["src"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules"]
 }
