@@ -1,6 +1,6 @@
 import React from 'react';
 import './MaterialFilter.css';
-import { recyclers } from '../data';
+// import { recyclers } from '../data';
 
 export default function MaterialFilter() {
   const handleSubmit = (e: { preventDefault: () => void }) => {
