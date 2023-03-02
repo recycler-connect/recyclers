@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
 
+.App {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -16,8 +24,9 @@ body {
   color: var();
   cursor: default;
   display: flex;
+  flex-direction: column;
   font-family: 'Oswald', sans-serif;
-  height: 100vh;
+  min-height: 100vh;
   justify-content: center;
   width: 100%;
 }
