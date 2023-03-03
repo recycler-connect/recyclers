@@ -10,13 +10,13 @@ header {
   width: 100vw;
 }
 
-.welcome,
+/* .welcome,
 h2 {
   font-size: 2em;
   text-transform: uppercase;
-}
+} */
 
-.header > button {
+/* .header > button {
   background-color: var(--color4);
   border: none;
   color: var(--color2);
@@ -24,4 +24,4 @@ h2 {
   font-size: large;
   font-weight: 700;
   text-transform: uppercase;
-}
+} */

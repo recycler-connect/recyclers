@@ -1,6 +1,6 @@
 import React from 'react';
 import './MaterialFilter.css';
-import { recyclers } from '../data';
+// import { recyclers } from '../data';
 
 export default function MaterialFilter() {
   const handleSubmit = (e: { preventDefault: () => void }) => {
@@ -9,7 +9,7 @@ export default function MaterialFilter() {
   };
   return (
     <>
-      <h1>{recyclers[0].company}</h1>
+      {/* <h1>{recyclers[0].company}</h1> */}
       <form className="material-filter">
         <label>
           Primary Material
