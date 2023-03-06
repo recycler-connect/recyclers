@@ -1,5 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
-export const client = createClient(
+
+import type { Database } from '../../db_types';
+
+export const client = createClient<Database>(
   process.env.REACT_APP_SUPABASE_URL,
   process.env.REACT_APP_SUPABASE_KEY
 );
