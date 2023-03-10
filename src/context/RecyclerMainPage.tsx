@@ -1,5 +1,6 @@
-import React, { createContext, useState, Dispatch, SetStateAction } from 'react';
+import React, { createContext, useState, Dispatch, SetStateAction, useEffect } from 'react';
 import { recyclers } from '../data';
+import { getRecyclers } from '../services/recyclers';
 import Main from 'src/components/Main/Main';
 
 export interface RecyclerResultType {
@@ -22,16 +23,15 @@ const baseContext: RecyclerContextType = {
 export const RecyclerContext = createContext<RecyclerContextType>(baseContext);
 
 const RecyclerMainPage: React.FC = () => {
-  // const recyclerData = fetchRecyclerData()
-  // make sure to have empty array in state
-  const [recyclerResults, setRecyclerResults] = useState<RecyclerResultType[]>(recyclers);
-
-  //   useEffect (() => {
-  //     if (recyclerData) {
-  //       setRecyclerResults(recyclerData)
-  //     }
-
-  // }, [recyclerData])
+  const recyclerData = getRecyclers();
+  // make sure to have empty array in state which we have done!
+  // where we left off: need to utilize async somehow
+  const [recyclerResults, setRecyclerResults] = useState<RecyclerResultType[]>([]);
+  useEffect(() => {
+    if (recyclerData) {
+      setRecyclerResults(recyclerData);
+    }
+  }, [recyclerData]);
 
   return (
     <div>
