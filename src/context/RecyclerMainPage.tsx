@@ -44,14 +44,14 @@ export const RecyclerContext = createContext<RecyclerContextType>(baseContext);
 const RecyclerMainPage: React.FC = () => {
   // make sure to have empty array in state which we have done!
   // where we left off: need to utilize async somehow
-  const [recyclerResults, setRecyclerResults] = useState<RecyclerContextType[] | any>([]);
+  const [recyclerResults, setRecyclerResults] = useState<RecyclerResultType[]>([]);
 
   useEffect(() => {
     const fetchRecyclerData = async () => {
       try {
         const data = await getRecyclers();
         if (data) {
-          setRecyclerResults(data.data);
+          setRecyclerResults(data);
         }
       } catch (error) {
         // eslint-disable-next-line no-console
