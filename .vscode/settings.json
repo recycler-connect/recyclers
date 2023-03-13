@@ -18,5 +18,6 @@
     "titleBar.inactiveBackground": "#db977099",
     "titleBar.inactiveForeground": "#15202b99"
   },
-  "peacock.color": "#db9770"
+  "peacock.color": "#db9770",
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }
