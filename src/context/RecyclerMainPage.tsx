@@ -45,14 +45,18 @@ export const RecyclerContext = createContext<RecyclerContextType>(baseContext);
 const RecyclerMainPage: React.FC = () => {
   // make sure to have empty array in state which we have done!
   // where we left off: need to utilize async somehow
-  const [recyclerResults, setRecyclerResults] = useState<RecyclerResultType[]>([]);
+  const [recyclerResults, setRecyclerResults] = useState<RecyclerContextType | any>([]);
 
   useEffect(() => {
     const fetchRecyclerData = async () => {
-      const data = await getRecyclers();
-      if (data) {
-        setRecyclerResults(data);
-        console.log('data', data);
+      try {
+        const data = await getRecyclers();
+        console.log('data in fetch function', data);
+        if (data) {
+          setRecyclerResults(data);
+        }
+      } catch (error) {
+        console.log('error message in fetch function', error);
       }
     };
     fetchRecyclerData();
