@@ -4,7 +4,7 @@
     "module": "commonjs",
     "baseUrl": "./",
     "outDir": "./dist",
-    "strict": false, //adds a variety of rules https://www.typescriptlang.org/tsconfig#strict
+    "strict": true, //adds a variety of rules https://www.typescriptlang.org/tsconfig#strict
     "esModuleInterop": true, //better import statements
     "resolveJsonModule": true, //import jsons
     "sourceMap": true, //better debugging of output javascript

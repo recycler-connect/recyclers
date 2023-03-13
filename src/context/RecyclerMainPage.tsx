@@ -2,7 +2,6 @@ import React, { createContext, useState, Dispatch, SetStateAction, useEffect } f
 // import { recyclers } from '../data';
 import { getRecyclers } from '../services/recyclers';
 import Main from 'src/components/Main/Main';
-import { log } from 'console';
 
 export interface RecyclerResultType {
   // id: number;
@@ -45,17 +44,17 @@ export const RecyclerContext = createContext<RecyclerContextType>(baseContext);
 const RecyclerMainPage: React.FC = () => {
   // make sure to have empty array in state which we have done!
   // where we left off: need to utilize async somehow
-  const [recyclerResults, setRecyclerResults] = useState<RecyclerContextType | any>([]);
+  const [recyclerResults, setRecyclerResults] = useState<RecyclerContextType[] | any>([]);
 
   useEffect(() => {
     const fetchRecyclerData = async () => {
       try {
         const data = await getRecyclers();
-        console.log('data in fetch function', data);
         if (data) {
-          setRecyclerResults(data);
+          setRecyclerResults(data.data);
         }
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.log('error message in fetch function', error);
       }
     };
