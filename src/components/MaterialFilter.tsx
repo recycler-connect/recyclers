@@ -13,7 +13,6 @@ export default function MaterialFilter() {
   };
 
   // to do step 1.5: declare handleSubmit function to update selected input state
-  console.log('primaryMaterialFilterOptions', primaryMaterialFilterOptions);
 
   return (
     <>
