@@ -7,6 +7,9 @@ export default function MaterialFilter() {
     e.preventDefault();
     //   setQuerySubmitValue(materialInputValue);
   };
+
+  // to do step 1.5: declare handleSubmit function to update selected input state
+
   return (
     <>
       {/* <h1>{recyclers[0].company}</h1> */}
@@ -16,6 +19,8 @@ export default function MaterialFilter() {
           <select id="primary-material" className="filter-select" placeholder="Primary Material">
             <option placeholder="Select">Select one</option>
             {/* hardcoded options for now, will remove once map works */}
+            {/* to do step 1: map through and render material types as options */}
+            {/* to do step 1: set input state based on user selection */}
             <option value="Cotton">Cotton</option>
           </select>
         </label>

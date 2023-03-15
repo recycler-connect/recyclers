@@ -1,6 +1,6 @@
 import React, { createContext, useState, Dispatch, SetStateAction, useEffect } from 'react';
 // import { recyclers } from '../data';
-import { getRecyclers } from '../services/recyclers';
+import { getAllRecyclers } from '../services/recyclers';
 import Main from 'src/components/Main/Main';
 
 export interface RecyclerResultType {
@@ -42,14 +42,19 @@ const baseContext: RecyclerContextType = {
 export const RecyclerContext = createContext<RecyclerContextType>(baseContext);
 
 const RecyclerMainPage: React.FC = () => {
-  // make sure to have empty array in state which we have done!
-  // where we left off: need to utilize async somehow
   const [recyclerResults, setRecyclerResults] = useState<RecyclerResultType[]>([]);
+  // to do step 1: add state for material types to map through in MaterialFilter input selects
+  // to do step 1: add state for all input data from MaterialFilter inputs: primary material type and percentage
 
+  // to do step 1: create useEffect to fetch all material types
+
+  // to do step 2: create useEffect to fetch matching recyclers using state values for selected inputs
+
+  // for later: do we want to refactor useEffect and move to new file?
   useEffect(() => {
     const fetchRecyclerData = async () => {
       try {
-        const data = await getRecyclers();
+        const data = await getAllRecyclers();
         if (data) {
           setRecyclerResults(data);
         }
