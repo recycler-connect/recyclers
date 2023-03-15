@@ -1,6 +1,6 @@
 import React, { createContext, useState, Dispatch, SetStateAction, useEffect } from 'react';
 // import { recyclers } from '../data';
-import { getAllRecyclers } from '../services/recyclers';
+import { getMaterialOptions, getAllRecyclers } from '../services/recyclers';
 import Main from 'src/components/Main/Main';
 
 export interface RecyclerResultType {
@@ -42,11 +42,28 @@ const baseContext: RecyclerContextType = {
 export const RecyclerContext = createContext<RecyclerContextType>(baseContext);
 
 const RecyclerMainPage: React.FC = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>('');
   const [recyclerResults, setRecyclerResults] = useState<RecyclerResultType[]>([]);
   // to do step 1: add state for material types to map through in MaterialFilter input selects
+  const [primaryMaterialFilterOptions, setPrimaryMaterialFilterOptions] = useState<any>([]);
+
   // to do step 1: add state for all input data from MaterialFilter inputs: primary material type and percentage
 
   // to do step 1: create useEffect to fetch all material types
+  useEffect(() => {
+    setIsLoading(true);
+    const fetchMaterialOptions = async () => {
+      try {
+        const resp = await getMaterialOptions();
+        setPrimaryMaterialFilterOptions(resp);
+        setIsLoading(false);
+      } catch (error) {
+        setError('Uh oh, something went wrong.');
+      }
+    };
+    fetchMaterialOptions();
+  }, []);
 
   // to do step 2: create useEffect to fetch matching recyclers using state values for selected inputs
 
