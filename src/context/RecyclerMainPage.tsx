@@ -31,12 +31,21 @@ export interface RecyclerResultType {
 type RecyclerContextType = {
   recyclerResults: RecyclerResultType[];
   setRecyclerResults: Dispatch<SetStateAction<RecyclerResultType[]>>;
+  isLoading: boolean;
+  error: string;
+  primaryMaterialFilterOptions: any;
+  setPrimaryMaterialFilterOptions: Dispatch<SetStateAction<any>>;
+
   //add loading property so children can access it
 };
 
 const baseContext: RecyclerContextType = {
   recyclerResults: [],
   setRecyclerResults: () => null,
+  isLoading: true,
+  error: '',
+  primaryMaterialFilterOptions: [],
+  setPrimaryMaterialFilterOptions: () => null,
 };
 
 export const RecyclerContext = createContext<RecyclerContextType>(baseContext);
@@ -85,7 +94,16 @@ const RecyclerMainPage: React.FC = () => {
 
   return (
     <div>
-      <RecyclerContext.Provider value={{ recyclerResults, setRecyclerResults }}>
+      <RecyclerContext.Provider
+        value={{
+          recyclerResults,
+          setRecyclerResults,
+          isLoading,
+          error,
+          primaryMaterialFilterOptions,
+          setPrimaryMaterialFilterOptions,
+        }}
+      >
         <Main />
       </RecyclerContext.Provider>
     </div>

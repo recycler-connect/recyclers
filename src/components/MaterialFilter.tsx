@@ -1,27 +1,39 @@
 import React from 'react';
+import { useContext } from 'react';
 import './MaterialFilter.css';
+import { RecyclerContext } from 'src/context/RecyclerMainPage';
 // import { recyclers } from '../data';
 
 export default function MaterialFilter() {
+  const { primaryMaterialFilterOptions, isLoading } = useContext(RecyclerContext);
+
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     //   setQuerySubmitValue(materialInputValue);
   };
 
   // to do step 1.5: declare handleSubmit function to update selected input state
+  console.log('primaryMaterialFilterOptions', primaryMaterialFilterOptions);
 
   return (
     <>
+      {isLoading && <h1>Loading...</h1>}
       {/* <h1>{recyclers[0].company}</h1> */}
       <form className="material-filter">
         <label>
           Primary Material
           <select id="primary-material" className="filter-select" placeholder="Primary Material">
             <option placeholder="Select">Select one</option>
-            {/* hardcoded options for now, will remove once map works */}
             {/* to do step 1: map through and render material types as options */}
+            {primaryMaterialFilterOptions.map(({ primary_material }: any) => (
+              <option
+                key={primaryMaterialFilterOptions.primary_material}
+                value={primaryMaterialFilterOptions.primary_material}
+              >
+                {primary_material}
+              </option>
+            ))}
             {/* to do step 1: set input state based on user selection */}
-            <option value="Cotton">Cotton</option>
           </select>
         </label>
         <label>
