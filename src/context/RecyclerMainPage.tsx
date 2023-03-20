@@ -35,6 +35,8 @@ type RecyclerContextType = {
   error: string;
   primaryMaterialFilterOptions: PrimaryMaterialOptionType[];
   setPrimaryMaterialFilterOptions: Dispatch<SetStateAction<PrimaryMaterialOptionType[]>>;
+  selectedPrimaryMaterial: string;
+  setSelectedPrimaryMaterial: Dispatch<SetStateAction<string>>;
   //to do later: add loading property so children can access it
 };
 
@@ -45,6 +47,8 @@ const baseContext: RecyclerContextType = {
   error: '',
   primaryMaterialFilterOptions: [],
   setPrimaryMaterialFilterOptions: () => [],
+  selectedPrimaryMaterial: '',
+  setSelectedPrimaryMaterial: () => '',
 };
 
 export const RecyclerContext = createContext<RecyclerContextType>(baseContext);
@@ -59,7 +63,7 @@ const RecyclerMainPage: React.FC = () => {
   >([]);
 
   // to do step 1: add state for all input data from MaterialFilter inputs: primary material type and percentage
-
+  const [selectedPrimaryMaterial, setSelectedPrimaryMaterial] = useState<string>('');
   // to do step 1: create useEffect to fetch all material types
   useEffect(() => {
     setIsLoading(true);
@@ -105,6 +109,8 @@ const RecyclerMainPage: React.FC = () => {
           error,
           primaryMaterialFilterOptions,
           setPrimaryMaterialFilterOptions,
+          selectedPrimaryMaterial,
+          setSelectedPrimaryMaterial,
         }}
       >
         <Main />
