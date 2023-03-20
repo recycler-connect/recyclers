@@ -4,7 +4,8 @@ import './MaterialFilter.css';
 import { RecyclerContext } from 'src/context/RecyclerMainPage';
 
 export default function MaterialFilter() {
-  const { primaryMaterialFilterOptions, isLoading } = useContext(RecyclerContext);
+  const { primaryMaterialFilterOptions, isLoading, setSelectedPrimaryMaterial } =
+    useContext(RecyclerContext);
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -20,7 +21,12 @@ export default function MaterialFilter() {
       <form className="material-filter">
         <label>
           Primary Material
-          <select id="primary-material" className="filter-select" placeholder="Primary Material">
+          <select
+            id="primary-material"
+            className="filter-select"
+            placeholder="Primary Material"
+            onChange={(e) => setSelectedPrimaryMaterial(e.target.value)}
+          >
             <option placeholder="Select">Select one</option>
             {/* to do step 1: map through and render material types as options */}
             {primaryMaterialFilterOptions.map(({ primary_material }) => (
