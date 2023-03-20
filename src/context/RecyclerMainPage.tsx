@@ -32,7 +32,9 @@ type RecyclerContextType = {
   recyclerResults: RecyclerResultType[];
   setRecyclerResults: Dispatch<SetStateAction<RecyclerResultType[]>>;
   isLoading: boolean;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
   error: string;
+  setError: Dispatch<SetStateAction<string>>;
   primaryMaterialFilterOptions: PrimaryMaterialOptionType[];
   setPrimaryMaterialFilterOptions: Dispatch<SetStateAction<PrimaryMaterialOptionType[]>>;
   selectedPrimaryMaterial: string;
@@ -44,7 +46,9 @@ const baseContext: RecyclerContextType = {
   recyclerResults: [],
   setRecyclerResults: () => null,
   isLoading: true,
+  setIsLoading: () => true,
   error: '',
+  setError: () => '',
   primaryMaterialFilterOptions: [],
   setPrimaryMaterialFilterOptions: () => [],
   selectedPrimaryMaterial: '',
@@ -106,7 +110,9 @@ const RecyclerMainPage: React.FC = () => {
           recyclerResults,
           setRecyclerResults,
           isLoading,
+          setIsLoading,
           error,
+          setError,
           primaryMaterialFilterOptions,
           setPrimaryMaterialFilterOptions,
           selectedPrimaryMaterial,

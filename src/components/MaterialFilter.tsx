@@ -1,18 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useContext } from 'react';
 import './MaterialFilter.css';
 import { RecyclerContext } from 'src/context/RecyclerMainPage';
+import { getMatchingRecyclers } from 'src/services/recyclers';
 
-export default function MaterialFilter() {
-  const { primaryMaterialFilterOptions, isLoading, setSelectedPrimaryMaterial } =
-    useContext(RecyclerContext);
+// export default function MaterialFilter() {
+const MaterialFilter: React.FC = () => {
+  const {
+    primaryMaterialFilterOptions,
+    isLoading,
+    setIsLoading,
+    selectedPrimaryMaterial,
+    setSelectedPrimaryMaterial,
+    setRecyclerResults,
+  } = useContext(RecyclerContext);
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-    //   setQuerySubmitValue(materialInputValue);
+  const fetchMatchingRecyclers = async () => {
+    try {
+      const resp = await getMatchingRecyclers(selectedPrimaryMaterial);
+      if (resp) {
+        // update recycler list state
+        setRecyclerResults(resp);
+        setIsLoading(false);
+      }
+    } catch (e) {
+      alert(e);
+    }
   };
 
   // to do step 1.5: declare handleSubmit function to update selected input state
+  const handleSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    setIsLoading(true);
+    // call fetch matching recylers
+    fetchMatchingRecyclers();
+  };
 
   return (
     <>
@@ -67,4 +89,6 @@ export default function MaterialFilter() {
       </form>
     </>
   );
-}
+};
+
+export default MaterialFilter;
