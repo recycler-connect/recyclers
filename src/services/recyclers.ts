@@ -6,7 +6,7 @@ export async function getMaterialOptions() {
     .from('distinct_materials')
     .select('primary_material')
     .order('primary_material', { ascending: true });
-  console.log('materialTypes', materialTypes);
+  // console.log('=======materialTypes', materialTypes);
   return materialTypes.data;
 }
 
@@ -15,5 +15,6 @@ export async function getMaterialOptions() {
 export async function getAllRecyclers() {
   const recyclerResp = await client.from('recyclers').select('*');
   //to do later: add error handler here
+  // console.log('=======recyclerResp', recyclerResp);
   return recyclerResp.data;
 }

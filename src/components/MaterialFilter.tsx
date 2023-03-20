@@ -2,7 +2,6 @@ import React from 'react';
 import { useContext } from 'react';
 import './MaterialFilter.css';
 import { RecyclerContext } from 'src/context/RecyclerMainPage';
-// import { recyclers } from '../data';
 
 export default function MaterialFilter() {
   const { primaryMaterialFilterOptions, isLoading } = useContext(RecyclerContext);
@@ -24,11 +23,8 @@ export default function MaterialFilter() {
           <select id="primary-material" className="filter-select" placeholder="Primary Material">
             <option placeholder="Select">Select one</option>
             {/* to do step 1: map through and render material types as options */}
-            {primaryMaterialFilterOptions.map(({ primary_material }: any) => (
-              <option
-                key={primaryMaterialFilterOptions.primary_material}
-                value={primaryMaterialFilterOptions.primary_material}
-              >
+            {primaryMaterialFilterOptions.map(({ primary_material }) => (
+              <option key={primary_material} value={primary_material}>
                 {primary_material}
               </option>
             ))}
