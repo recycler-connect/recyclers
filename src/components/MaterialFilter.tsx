@@ -51,7 +51,7 @@ const MaterialFilter: React.FC = () => {
             <option placeholder="Select">Select one</option>
             {/* to do step 1: map through and render material types as options */}
             {primaryMaterialFilterOptions.map(({ primary_material }) => (
-              <option key={primary_material} value={primary_material}>
+              <option key={primary_material} value={primary_material as string}>
                 {primary_material}
               </option>
             ))}

@@ -16,7 +16,7 @@ export interface RecyclerResultType {
 }
 
 export interface PrimaryMaterialOptionType {
-  primary_material: string;
+  primary_material: string | null;
 }
 
 type RecyclerContextType = {
@@ -65,7 +65,7 @@ const RecyclerMainPage: React.FC = () => {
     const fetchMaterialOptions = async () => {
       try {
         const resp = await getMaterialOptions();
-        if (resp) {
+        if (resp !== null) {
           setPrimaryMaterialFilterOptions(resp);
           setIsLoading(false);
         }
