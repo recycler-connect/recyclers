@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useContext } from 'react';
 import './MaterialFilter.css';
 import { RecyclerContext } from 'src/context/RecyclerMainPage';

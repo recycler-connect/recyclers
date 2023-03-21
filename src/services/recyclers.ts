@@ -13,13 +13,9 @@ export async function getMaterialOptions() {
 // to do step 2: create getMatchingRecyclers function - get recycler results based on material type inputs
 export async function getMatchingRecyclers(selectedPrimaryMaterial: string) {
   const matchingRecyclers = await client
-    // .from('recyclers')
-    // .select('*', 'materials')
-    // .match('primary_material', 'cotton');
-    .from('materials')
-    .select('company')
-    .match({ primary_material: selectedPrimaryMaterial });
-  console.log('=====matchingRecyclers', matchingRecyclers.data);
+    .from('recyclers')
+    .select('*, materials!inner(*)')
+    .eq('materials.primary_material', selectedPrimaryMaterial);
   return matchingRecyclers.data;
 }
 
