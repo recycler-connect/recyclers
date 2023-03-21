@@ -38,7 +38,6 @@ const MaterialFilter: React.FC = () => {
 
   return (
     <>
-      {isLoading && <h1>Loading...</h1>}
       {/* <h1>{recyclers[0].company}</h1> */}
       <form className="material-filter">
         <label>
@@ -87,6 +86,7 @@ const MaterialFilter: React.FC = () => {
         </label>
         <button onClick={handleSubmit}>Submit</button>
       </form>
+      {isLoading && <h1>Loading...</h1>}
     </>
   );
 };
