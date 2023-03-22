@@ -1,6 +1,7 @@
 import React, { createContext, useState, Dispatch, SetStateAction, useEffect } from 'react';
 import { getMaterialOptions, getAllRecyclers } from '../services/recyclers';
 import Main from 'src/components/Main/Main';
+// to do: create context type file and move types there
 
 export interface RecyclerResultType {
   acc_circ_url: string | null;
@@ -30,9 +31,12 @@ type RecyclerContextType = {
   setPrimaryMaterialFilterOptions: Dispatch<SetStateAction<PrimaryMaterialOptionType[]>>;
   selectedPrimaryMaterial: string;
   setSelectedPrimaryMaterial: Dispatch<SetStateAction<string>>;
+  selectedPrimaryMinimumPercentage: number | null;
+  setSelectedPrimaryMinimumPercentage: Dispatch<SetStateAction<number | null>>;
+
   //to do later: add loading property so children can access it
 };
-
+// if it was just js, it would be the same but the types would not be passed
 const baseContext: RecyclerContextType = {
   recyclerResults: [],
   setRecyclerResults: () => null,
@@ -44,8 +48,10 @@ const baseContext: RecyclerContextType = {
   setPrimaryMaterialFilterOptions: () => [],
   selectedPrimaryMaterial: '',
   setSelectedPrimaryMaterial: () => '',
+  selectedPrimaryMinimumPercentage: null,
+  setSelectedPrimaryMinimumPercentage: () => null,
 };
-
+// best to create a base context (or initial context) outside of the component so that it is exportable.
 export const RecyclerContext = createContext<RecyclerContextType>(baseContext);
 
 const RecyclerMainPage: React.FC = () => {
@@ -59,6 +65,9 @@ const RecyclerMainPage: React.FC = () => {
 
   // to do step 1: add state for all input data from MaterialFilter inputs: primary material type and percentage
   const [selectedPrimaryMaterial, setSelectedPrimaryMaterial] = useState<string>('');
+  const [selectedPrimaryMinimumPercentage, setSelectedPrimaryMinimumPercentage] = useState<
+    number | null
+  >(null);
   // to do step 1: create useEffect to fetch all material types
   useEffect(() => {
     setIsLoading(true);
@@ -78,7 +87,7 @@ const RecyclerMainPage: React.FC = () => {
 
   // to do step 2: create useEffect to fetch matching recyclers using state values for selected inputs
 
-  // for later: do we want to refactor useEffect and move to new file?
+  // for later: do we want to refactor useEffect and move to new file: no, keep it here!
   useEffect(() => {
     const fetchRecyclerData = async () => {
       try {
@@ -108,6 +117,8 @@ const RecyclerMainPage: React.FC = () => {
           setPrimaryMaterialFilterOptions,
           selectedPrimaryMaterial,
           setSelectedPrimaryMaterial,
+          selectedPrimaryMinimumPercentage,
+          setSelectedPrimaryMinimumPercentage,
         }}
       >
         <Main />

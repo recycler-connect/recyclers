@@ -14,7 +14,8 @@ const MaterialFilter: React.FC = () => {
     setSelectedPrimaryMaterial,
     setRecyclerResults,
   } = useContext(RecyclerContext);
-
+  // to do: move fetch options from mainPage
+  // to do: move fetchmatching to mainpage
   const fetchMatchingRecyclers = async () => {
     try {
       const resp = await getMatchingRecyclers(selectedPrimaryMaterial);
@@ -29,6 +30,7 @@ const MaterialFilter: React.FC = () => {
   };
 
   // to do step 1.5: declare handleSubmit function to update selected input state
+  // to do:
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setIsLoading(true);
