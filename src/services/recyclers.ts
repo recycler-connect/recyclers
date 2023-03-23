@@ -11,11 +11,16 @@ export async function getMaterialOptions() {
 }
 
 // to do step 2: create getMatchingRecyclers function - get recycler results based on material type inputs
-export async function getMatchingRecyclers(selectedPrimaryMaterial: string) {
+export async function getMatchingRecyclers(
+  selectedPrimaryMaterial: string,
+  selectedPrimaryMinimumPercentage: number
+) {
   const matchingRecyclers = await client
     .from('recyclers')
     .select('*, materials!inner(*)')
-    .eq('materials.primary_material', selectedPrimaryMaterial);
+    .eq('materials.primary_material', selectedPrimaryMaterial)
+    .lte('materials.primary_minimum_percentage', selectedPrimaryMinimumPercentage)
+    .order('company', { ascending: true });
   return matchingRecyclers.data;
 }
 

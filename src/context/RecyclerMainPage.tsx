@@ -1,5 +1,5 @@
 import React, { createContext, useState, Dispatch, SetStateAction, useEffect } from 'react';
-import { getMaterialOptions, getAllRecyclers, getMatchingRecyclers } from '../services/recyclers';
+import { getAllRecyclers, getMatchingRecyclers } from '../services/recyclers';
 import Main from 'src/components/Main/Main';
 // to do: create context type file and move types there
 
@@ -32,7 +32,7 @@ type RecyclerContextType = {
   selectedPrimaryMaterial: string;
   setSelectedPrimaryMaterial: Dispatch<SetStateAction<string>>;
   selectedPrimaryMinimumPercentage: number | null;
-  setSelectedPrimaryMinimumPercentage: Dispatch<SetStateAction<number | null>>;
+  setSelectedPrimaryMinimumPercentage: Dispatch<SetStateAction<number>>;
   fetchMatchingRecyclers: any;
 
   //to do later: add loading property so children can access it
@@ -50,7 +50,7 @@ const baseContext: RecyclerContextType = {
   selectedPrimaryMaterial: '',
   setSelectedPrimaryMaterial: () => '',
   selectedPrimaryMinimumPercentage: null,
-  setSelectedPrimaryMinimumPercentage: () => null,
+  setSelectedPrimaryMinimumPercentage: () => 0,
   fetchMatchingRecyclers: () => [],
 };
 // best to create a base context (or initial context) outside of the component so that it is exportable.
@@ -67,9 +67,8 @@ const RecyclerMainPage: React.FC = () => {
 
   // to do step 1: add state for all input data from MaterialFilter inputs: primary material type and percentage
   const [selectedPrimaryMaterial, setSelectedPrimaryMaterial] = useState<string>('');
-  const [selectedPrimaryMinimumPercentage, setSelectedPrimaryMinimumPercentage] = useState<
-    number | null
-  >(null);
+  const [selectedPrimaryMinimumPercentage, setSelectedPrimaryMinimumPercentage] =
+    useState<number>(0);
 
   // to do step 2: create useEffect to fetch matching recyclers using state values for selected inputs
 
@@ -91,7 +90,10 @@ const RecyclerMainPage: React.FC = () => {
 
   const fetchMatchingRecyclers = async () => {
     try {
-      const resp = await getMatchingRecyclers(selectedPrimaryMaterial);
+      const resp = await getMatchingRecyclers(
+        selectedPrimaryMaterial,
+        selectedPrimaryMinimumPercentage
+      );
       if (resp) {
         // update recycler list state
         setRecyclerResults(resp);
