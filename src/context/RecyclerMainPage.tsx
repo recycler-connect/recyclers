@@ -70,22 +70,6 @@ const RecyclerMainPage: React.FC = () => {
   const [selectedPrimaryMinimumPercentage, setSelectedPrimaryMinimumPercentage] = useState<
     number | null
   >(null);
-  // to do step 1: create useEffect to fetch all material types
-  useEffect(() => {
-    setIsLoading(true);
-    const fetchMaterialOptions = async () => {
-      try {
-        const resp = await getMaterialOptions();
-        if (resp !== null) {
-          setPrimaryMaterialFilterOptions(resp);
-          setIsLoading(false);
-        }
-      } catch (error) {
-        setError('Uh oh, something went wrong.');
-      }
-    };
-    fetchMaterialOptions();
-  }, []);
 
   // to do step 2: create useEffect to fetch matching recyclers using state values for selected inputs
 
