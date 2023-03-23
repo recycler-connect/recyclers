@@ -1,5 +1,5 @@
 import React, { createContext, useState, Dispatch, SetStateAction, useEffect } from 'react';
-import { getMaterialOptions, getAllRecyclers } from '../services/recyclers';
+import { getMaterialOptions, getAllRecyclers, getMatchingRecyclers } from '../services/recyclers';
 import Main from 'src/components/Main/Main';
 // to do: create context type file and move types there
 
@@ -33,6 +33,7 @@ type RecyclerContextType = {
   setSelectedPrimaryMaterial: Dispatch<SetStateAction<string>>;
   selectedPrimaryMinimumPercentage: number | null;
   setSelectedPrimaryMinimumPercentage: Dispatch<SetStateAction<number | null>>;
+  fetchMatchingRecyclers: any;
 
   //to do later: add loading property so children can access it
 };
@@ -50,6 +51,7 @@ const baseContext: RecyclerContextType = {
   setSelectedPrimaryMaterial: () => '',
   selectedPrimaryMinimumPercentage: null,
   setSelectedPrimaryMinimumPercentage: () => null,
+  fetchMatchingRecyclers: () => [],
 };
 // best to create a base context (or initial context) outside of the component so that it is exportable.
 export const RecyclerContext = createContext<RecyclerContextType>(baseContext);
@@ -103,6 +105,19 @@ const RecyclerMainPage: React.FC = () => {
     fetchRecyclerData();
   }, []);
 
+  const fetchMatchingRecyclers = async () => {
+    try {
+      const resp = await getMatchingRecyclers(selectedPrimaryMaterial);
+      if (resp) {
+        // update recycler list state
+        setRecyclerResults(resp);
+        setIsLoading(false);
+      }
+    } catch (e) {
+      alert(e);
+    }
+  };
+
   return (
     <div>
       <RecyclerContext.Provider
@@ -119,6 +134,7 @@ const RecyclerMainPage: React.FC = () => {
           setSelectedPrimaryMaterial,
           selectedPrimaryMinimumPercentage,
           setSelectedPrimaryMinimumPercentage,
+          fetchMatchingRecyclers,
         }}
       >
         <Main />

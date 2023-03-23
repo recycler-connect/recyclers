@@ -2,7 +2,6 @@ import React from 'react';
 import { useContext } from 'react';
 import './MaterialFilter.css';
 import { RecyclerContext } from 'src/context/RecyclerMainPage';
-import { getMatchingRecyclers } from 'src/services/recyclers';
 
 // export default function MaterialFilter() {
 const MaterialFilter: React.FC = () => {
@@ -10,31 +9,18 @@ const MaterialFilter: React.FC = () => {
     primaryMaterialFilterOptions,
     isLoading,
     setIsLoading,
-    selectedPrimaryMaterial,
     setSelectedPrimaryMaterial,
-    setRecyclerResults,
+    fetchMatchingRecyclers,
   } = useContext(RecyclerContext);
   // to do: move fetch options from mainPage
-  // to do: move fetchmatching to mainpage
-  const fetchMatchingRecyclers = async () => {
-    try {
-      const resp = await getMatchingRecyclers(selectedPrimaryMaterial);
-      if (resp) {
-        // update recycler list state
-        setRecyclerResults(resp);
-        setIsLoading(false);
-      }
-    } catch (e) {
-      alert(e);
-    }
-  };
+  // done: move fetchmatching to mainpage
 
   // to do step 1.5: declare handleSubmit function to update selected input state
   // to do:
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setIsLoading(true);
-    // call fetch matching recylers
+    // call fetch matching recyclers
     fetchMatchingRecyclers();
   };
 
