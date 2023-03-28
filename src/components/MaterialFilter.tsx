@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useContext } from 'react';
 import './MaterialFilter.css';
 import { RecyclerContext } from 'src/context/RecyclerMainPage';
-import { getMaterialOptions } from 'src/services/recyclers';
+import { getMaterialOptions, getSecondaryMaterialOptions } from 'src/services/recyclers';
 
 // export default function MaterialFilter() {
 const MaterialFilter: React.FC = () => {
@@ -15,6 +15,9 @@ const MaterialFilter: React.FC = () => {
     setPrimaryMaterialFilterOptions,
     setSelectedPrimaryMinimumPercentage,
     setError,
+    secondaryMaterialFilterOptions,
+    setSecondaryMaterialFilterOptions,
+    setSelectedSecondaryMaterial,
   } = useContext(RecyclerContext);
   // to do: move fetch options from mainPage
   // done: move fetchmatching to mainpage
@@ -34,6 +37,22 @@ const MaterialFilter: React.FC = () => {
       }
     };
     fetchMaterialOptions();
+  }, []);
+
+  useEffect(() => {
+    setIsLoading(true);
+    const fetchSecondaryMaterialOptions = async () => {
+      try {
+        const resp = await getSecondaryMaterialOptions();
+        if (resp !== null) {
+          setSecondaryMaterialFilterOptions(resp);
+          setIsLoading(false);
+        }
+      } catch (error) {
+        setError('Uh oh, something went wrong.');
+      }
+    };
+    fetchSecondaryMaterialOptions();
   }, []);
 
   // to do step 1.5: declare handleSubmit function to update selected input state
@@ -79,6 +98,35 @@ const MaterialFilter: React.FC = () => {
             onChange={(e) => setSelectedPrimaryMinimumPercentage(e.target.value as any)}
           ></input>
         </label>
+        <label>
+          Secondary Material
+          <select
+            id="secondary-material"
+            className="filter-select"
+            placeholder="Secondary Material"
+            onChange={(e) => setSelectedSecondaryMaterial(e.target.value)}
+          >
+            <option placeholder="Select">Select one</option>
+            {secondaryMaterialFilterOptions.map(({ secondary_material }) => (
+              <option key={secondary_material} value={secondary_material as string}>
+                {secondary_material}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        {/*  <label>
+          Secondary Material Percentage
+          <input
+            type="number"
+            className="filter-select"
+            id="secondary-material-percentage"
+            placeholder="Material Percentage"
+            min="0"
+            max="100"
+            onChange={(e) => setSelectedSecondaryMinimumPercentage(e.target.value as any)}
+          ></input>
+        </label> */}
         <label>
           Weight
           <input className="filter-select" placeholder="Weight" id="weight"></input>

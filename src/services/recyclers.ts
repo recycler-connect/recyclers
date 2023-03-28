@@ -10,6 +10,14 @@ export async function getMaterialOptions() {
   return materialTypes.data;
 }
 
+export async function getSecondaryMaterialOptions() {
+  const secondaryMaterialTypes = await client
+    .from('distinct_secondary_materials2')
+    .select('secondary_material')
+    .order('secondary_material', { ascending: true });
+  return secondaryMaterialTypes.data;
+}
+
 // to do step 2: create getMatchingRecyclers function - get recycler results based on material type inputs
 export async function getMatchingRecyclers(
   selectedPrimaryMaterial: string,

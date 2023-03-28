@@ -20,6 +20,10 @@ export interface PrimaryMaterialOptionType {
   primary_material: string | null;
 }
 
+export interface SecondaryMaterialOptionType {
+  secondary_material: string | null;
+}
+
 type RecyclerContextType = {
   recyclerResults: RecyclerResultType[];
   setRecyclerResults: Dispatch<SetStateAction<RecyclerResultType[]>>;
@@ -33,8 +37,11 @@ type RecyclerContextType = {
   setSelectedPrimaryMaterial: Dispatch<SetStateAction<string>>;
   selectedPrimaryMinimumPercentage: number | null;
   setSelectedPrimaryMinimumPercentage: Dispatch<SetStateAction<number>>;
+  secondaryMaterialFilterOptions: SecondaryMaterialOptionType[];
+  setSecondaryMaterialFilterOptions: Dispatch<SetStateAction<SecondaryMaterialOptionType[]>>;
+  selectedSecondaryMaterial: string;
+  setSelectedSecondaryMaterial: Dispatch<SetStateAction<string>>;
   fetchMatchingRecyclers: any;
-
   //to do later: add loading property so children can access it
 };
 // if it was just js, it would be the same but the types would not be passed
@@ -51,6 +58,10 @@ const baseContext: RecyclerContextType = {
   setSelectedPrimaryMaterial: () => '',
   selectedPrimaryMinimumPercentage: null,
   setSelectedPrimaryMinimumPercentage: () => 0,
+  secondaryMaterialFilterOptions: [],
+  setSecondaryMaterialFilterOptions: () => [],
+  selectedSecondaryMaterial: '',
+  setSelectedSecondaryMaterial: () => '',
   fetchMatchingRecyclers: () => [],
 };
 // best to create a base context (or initial context) outside of the component so that it is exportable.
@@ -64,11 +75,17 @@ const RecyclerMainPage: React.FC = () => {
   const [primaryMaterialFilterOptions, setPrimaryMaterialFilterOptions] = useState<
     PrimaryMaterialOptionType[]
   >([]);
+  const [secondaryMaterialFilterOptions, setSecondaryMaterialFilterOptions] = useState<
+    SecondaryMaterialOptionType[]
+  >([]);
 
   // to do step 1: add state for all input data from MaterialFilter inputs: primary material type and percentage
   const [selectedPrimaryMaterial, setSelectedPrimaryMaterial] = useState<string>('');
   const [selectedPrimaryMinimumPercentage, setSelectedPrimaryMinimumPercentage] =
     useState<number>(0);
+  const [selectedSecondaryMaterial, setSelectedSecondaryMaterial] = useState<string>('');
+  // const [selectedSecondaryMinimumPercentage, setSelectedSecondaryMinimumPercentage] =
+  //   useState<number>(0);
 
   // to do step 2: create useEffect to fetch matching recyclers using state values for selected inputs
 
@@ -93,6 +110,7 @@ const RecyclerMainPage: React.FC = () => {
       const resp = await getMatchingRecyclers(
         selectedPrimaryMaterial,
         selectedPrimaryMinimumPercentage
+        // selectedSecondaryMaterial,
       );
       if (resp) {
         // update recycler list state
@@ -120,6 +138,10 @@ const RecyclerMainPage: React.FC = () => {
           setSelectedPrimaryMaterial,
           selectedPrimaryMinimumPercentage,
           setSelectedPrimaryMinimumPercentage,
+          secondaryMaterialFilterOptions,
+          setSecondaryMaterialFilterOptions,
+          selectedSecondaryMaterial,
+          setSelectedSecondaryMaterial,
           fetchMatchingRecyclers,
         }}
       >
