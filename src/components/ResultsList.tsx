@@ -8,6 +8,7 @@ export default function ResultsList() {
 
   return (
     <div>
+      <h3>You have {recyclerResults.length} matching recyclers. </h3>
       {recyclerResults.length !== 0 &&
         // tsx error: Property 'data' does not exist on type 'RecyclerResultType[]'.ts(2339)
         recyclerResults.map((recycler) => <Recycler key={recycler.id} {...recycler} />)}
