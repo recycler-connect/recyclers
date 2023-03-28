@@ -109,8 +109,8 @@ const RecyclerMainPage: React.FC = () => {
     try {
       const resp = await getMatchingRecyclers(
         selectedPrimaryMaterial,
-        selectedPrimaryMinimumPercentage
-        // selectedSecondaryMaterial,
+        selectedPrimaryMinimumPercentage,
+        selectedSecondaryMaterial
       );
       if (resp) {
         // update recycler list state
