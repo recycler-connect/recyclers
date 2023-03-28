@@ -28,7 +28,12 @@ export async function getMatchingRecyclers(
     .from('recyclers')
     .select('*, materials!inner(*)')
     .eq('materials.primary_material', selectedPrimaryMaterial)
-    .eq('materials.secondary_material', selectedSecondaryMaterial)
+    .or(
+      `secondary_material.eq.${selectedSecondaryMaterial},secondary_material.eq.Other,secondary_material.is.Null`,
+      {
+        foreignTable: 'materials',
+      }
+    )
     .lte('materials.primary_minimum_percentage', selectedPrimaryMinimumPercentage)
     .order('company', { ascending: true });
   return matchingRecyclers.data;
