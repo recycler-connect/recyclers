@@ -47,7 +47,7 @@ export interface Database {
           comercialization_for_post_consumer: string | null;
           company: string | null;
           id: number;
-          input_material: string | null;
+          material_source: string | null;
           location: string | null;
           output_material: string | null;
           primary_material_type_list: string | null;
@@ -59,7 +59,7 @@ export interface Database {
           comercialization_for_post_consumer?: string | null;
           company?: string | null;
           id?: number;
-          input_material?: string | null;
+          material_source?: string | null;
           location?: string | null;
           output_material?: string | null;
           primary_material_type_list?: string | null;
@@ -71,7 +71,7 @@ export interface Database {
           comercialization_for_post_consumer?: string | null;
           company?: string | null;
           id?: number;
-          input_material?: string | null;
+          material_source?: string | null;
           location?: string | null;
           output_material?: string | null;
           primary_material_type_list?: string | null;

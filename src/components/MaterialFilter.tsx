@@ -20,6 +20,7 @@ const MaterialFilter: React.FC = () => {
     setSecondaryMaterialFilterOptions,
     setSelectedSecondaryMaterial,
     setSelectedSecondaryMinimumPercentage,
+    setSelectedMaterialSource,
   } = useContext(RecyclerContext);
   // to do: move fetch options from mainPage
   // done: move fetchmatching to mainpage
@@ -138,6 +139,14 @@ const MaterialFilter: React.FC = () => {
           <input className="filter-select" placeholder="Weight" id="weight"></input>
         </label>
         <label>
+          <label>
+            Material Source
+            <select onChange={(e) => setSelectedMaterialSource(e.target.value as any)}>
+              <option placeholder="Select">Select one</option>
+              <option value="Post Consumer">Post Consumer</option>
+              <option value="Post Industrial">Post Industrial</option>
+            </select>
+          </label>
           I am a...
           <select>
             <option value="company">Company</option>

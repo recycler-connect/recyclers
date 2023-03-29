@@ -8,7 +8,7 @@ export interface RecyclerResultType {
   comercialization_for_post_consumer: string | null;
   company: string | null;
   id: number;
-  input_material: string | null;
+  material_source: string | null;
   location: string | null;
   output_material: string | null;
   primary_material_type_list: string | null;
@@ -43,11 +43,14 @@ type RecyclerContextType = {
   setSelectedSecondaryMaterial: Dispatch<SetStateAction<string>>;
   selectedSecondaryMinimumPercentage: number | null;
   setSelectedSecondaryMinimumPercentage: Dispatch<SetStateAction<number | null>>;
+  selectedMaterialSource: string | null;
+  // should this be Dispatch<SetStateAction<string | null>> or Dispatch<SetStateAction<RecyclerResultType>>? Does it matter?
+  setSelectedMaterialSource: Dispatch<SetStateAction<string | null>>;
   fetchMatchingRecyclers: any;
-  //to do later: add loading property so children can access it
 };
 // if it was just js, it would be the same but the types would not be passed
 const baseContext: RecyclerContextType = {
+  // explore null vs empty string/array - what is the advantage of one or the other?
   recyclerResults: [],
   setRecyclerResults: () => null,
   isLoading: true,
@@ -66,6 +69,8 @@ const baseContext: RecyclerContextType = {
   setSelectedSecondaryMaterial: () => '',
   selectedSecondaryMinimumPercentage: null,
   setSelectedSecondaryMinimumPercentage: () => null,
+  selectedMaterialSource: null,
+  setSelectedMaterialSource: () => null,
   fetchMatchingRecyclers: () => [],
 };
 // best to create a base context (or initial context) outside of the component so that it is exportable.
@@ -92,6 +97,7 @@ const RecyclerMainPage: React.FC = () => {
   const [selectedSecondaryMinimumPercentage, setSelectedSecondaryMinimumPercentage] = useState<
     number | null
   >(null);
+  const [selectedMaterialSource, setSelectedMaterialSource] = useState<string | null>(null);
 
   // to do step 2: create useEffect to fetch matching recyclers using state values for selected inputs
 
@@ -151,6 +157,8 @@ const RecyclerMainPage: React.FC = () => {
           setSelectedSecondaryMaterial,
           selectedSecondaryMinimumPercentage,
           setSelectedSecondaryMinimumPercentage,
+          selectedMaterialSource,
+          setSelectedMaterialSource,
           fetchMatchingRecyclers,
         }}
       >
