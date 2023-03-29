@@ -41,6 +41,8 @@ type RecyclerContextType = {
   setSecondaryMaterialFilterOptions: Dispatch<SetStateAction<SecondaryMaterialOptionType[]>>;
   selectedSecondaryMaterial: string;
   setSelectedSecondaryMaterial: Dispatch<SetStateAction<string>>;
+  selectedSecondaryMinimumPercentage: number | null;
+  setSelectedSecondaryMinimumPercentage: Dispatch<SetStateAction<number>>;
   fetchMatchingRecyclers: any;
   //to do later: add loading property so children can access it
 };
@@ -62,6 +64,8 @@ const baseContext: RecyclerContextType = {
   setSecondaryMaterialFilterOptions: () => [],
   selectedSecondaryMaterial: '',
   setSelectedSecondaryMaterial: () => '',
+  selectedSecondaryMinimumPercentage: null,
+  setSelectedSecondaryMinimumPercentage: () => 0,
   fetchMatchingRecyclers: () => [],
 };
 // best to create a base context (or initial context) outside of the component so that it is exportable.
@@ -84,8 +88,8 @@ const RecyclerMainPage: React.FC = () => {
   const [selectedPrimaryMinimumPercentage, setSelectedPrimaryMinimumPercentage] =
     useState<number>(0);
   const [selectedSecondaryMaterial, setSelectedSecondaryMaterial] = useState<string>('');
-  // const [selectedSecondaryMinimumPercentage, setSelectedSecondaryMinimumPercentage] =
-  //   useState<number>(0);
+  const [selectedSecondaryMinimumPercentage, setSelectedSecondaryMinimumPercentage] =
+    useState<number>(0);
 
   // to do step 2: create useEffect to fetch matching recyclers using state values for selected inputs
 
@@ -110,7 +114,8 @@ const RecyclerMainPage: React.FC = () => {
       const resp = await getMatchingRecyclers(
         selectedPrimaryMaterial,
         selectedPrimaryMinimumPercentage,
-        selectedSecondaryMaterial
+        selectedSecondaryMaterial,
+        selectedSecondaryMinimumPercentage
       );
       if (resp) {
         // update recycler list state
@@ -142,6 +147,8 @@ const RecyclerMainPage: React.FC = () => {
           setSecondaryMaterialFilterOptions,
           selectedSecondaryMaterial,
           setSelectedSecondaryMaterial,
+          selectedSecondaryMinimumPercentage,
+          setSelectedSecondaryMinimumPercentage,
           fetchMatchingRecyclers,
         }}
       >

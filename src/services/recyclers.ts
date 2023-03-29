@@ -22,7 +22,8 @@ export async function getSecondaryMaterialOptions() {
 export async function getMatchingRecyclers(
   selectedPrimaryMaterial: string,
   selectedPrimaryMinimumPercentage: number,
-  selectedSecondaryMaterial: string
+  selectedSecondaryMaterial: string,
+  selectedSecondaryMinimumPercentage: number | null
 ) {
   const matchingRecyclers = await client
     .from('recyclers')
@@ -35,6 +36,12 @@ export async function getMatchingRecyclers(
       }
     )
     .lte('materials.primary_minimum_percentage', selectedPrimaryMinimumPercentage)
+    .or(
+      `secondary_minimum_percentage.lte.${selectedSecondaryMinimumPercentage},secondary_minimum_percentage.is.Null`,
+      {
+        foreignTable: 'materials',
+      }
+    )
     .order('company', { ascending: true });
   return matchingRecyclers.data;
 }
