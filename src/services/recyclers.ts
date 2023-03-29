@@ -21,7 +21,7 @@ export async function getSecondaryMaterialOptions() {
 // to do step 2: create getMatchingRecyclers function - get recycler results based on material type inputs
 export async function getMatchingRecyclers(
   selectedPrimaryMaterial: string,
-  selectedPrimaryMinimumPercentage: number,
+  selectedPrimaryMinimumPercentage: number | null,
   selectedSecondaryMaterial: string,
   selectedSecondaryMinimumPercentage: number | null
 ) {
@@ -37,7 +37,7 @@ export async function getMatchingRecyclers(
     )
     .lte('materials.primary_minimum_percentage', selectedPrimaryMinimumPercentage)
     .or(
-      `secondary_minimum_percentage.lte.${selectedSecondaryMinimumPercentage},secondary_minimum_percentage.is.Null`,
+      `secondary_minimum_percentage.gte.${selectedSecondaryMinimumPercentage},secondary_minimum_percentage.is.Null`,
       {
         foreignTable: 'materials',
       }

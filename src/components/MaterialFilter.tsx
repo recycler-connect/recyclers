@@ -10,6 +10,7 @@ const MaterialFilter: React.FC = () => {
     primaryMaterialFilterOptions,
     isLoading,
     setIsLoading,
+    selectedPrimaryMinimumPercentage,
     setSelectedPrimaryMaterial,
     fetchMatchingRecyclers,
     setPrimaryMaterialFilterOptions,
@@ -99,34 +100,39 @@ const MaterialFilter: React.FC = () => {
             onChange={(e) => setSelectedPrimaryMinimumPercentage(e.target.value as any)}
           ></input>
         </label>
-        <label>
-          Secondary Material
-          <select
-            id="secondary-material"
-            className="filter-select"
-            placeholder="Secondary Material"
-            onChange={(e) => setSelectedSecondaryMaterial(e.target.value)}
-          >
-            <option placeholder="Select">Select one</option>
-            {secondaryMaterialFilterOptions.map(({ secondary_material }) => (
-              <option key={secondary_material} value={secondary_material as string}>
-                {secondary_material}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Secondary Material Percentage
-          <input
-            type="number"
-            className="filter-select"
-            id="secondary-material-percentage"
-            placeholder="Material Percentage"
-            min="0"
-            max="100"
-            onChange={(e) => setSelectedSecondaryMinimumPercentage(e.target.value as any)}
-          ></input>
-        </label>
+        {selectedPrimaryMinimumPercentage === null ||
+          (selectedPrimaryMinimumPercentage < 100 && (
+            <>
+              <label>
+                Secondary Material
+                <select
+                  id="secondary-material"
+                  className="filter-select"
+                  placeholder="Secondary Material"
+                  onChange={(e) => setSelectedSecondaryMaterial(e.target.value)}
+                >
+                  <option placeholder="Select">Select one</option>
+                  {secondaryMaterialFilterOptions.map(({ secondary_material }) => (
+                    <option key={secondary_material} value={secondary_material as string}>
+                      {secondary_material}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                Secondary Material Percentage
+                <input
+                  type="number"
+                  className="filter-select"
+                  id="secondary-material-percentage"
+                  placeholder="Material Percentage"
+                  min="0"
+                  max="100"
+                  onChange={(e) => setSelectedSecondaryMinimumPercentage(e.target.value as any)}
+                ></input>
+              </label>
+            </>
+          ))}
         <label>
           Weight
           <input className="filter-select" placeholder="Weight" id="weight"></input>

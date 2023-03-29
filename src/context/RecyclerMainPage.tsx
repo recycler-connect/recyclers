@@ -36,13 +36,13 @@ type RecyclerContextType = {
   selectedPrimaryMaterial: string;
   setSelectedPrimaryMaterial: Dispatch<SetStateAction<string>>;
   selectedPrimaryMinimumPercentage: number | null;
-  setSelectedPrimaryMinimumPercentage: Dispatch<SetStateAction<number>>;
+  setSelectedPrimaryMinimumPercentage: Dispatch<SetStateAction<number | null>>;
   secondaryMaterialFilterOptions: SecondaryMaterialOptionType[];
   setSecondaryMaterialFilterOptions: Dispatch<SetStateAction<SecondaryMaterialOptionType[]>>;
   selectedSecondaryMaterial: string;
   setSelectedSecondaryMaterial: Dispatch<SetStateAction<string>>;
   selectedSecondaryMinimumPercentage: number | null;
-  setSelectedSecondaryMinimumPercentage: Dispatch<SetStateAction<number>>;
+  setSelectedSecondaryMinimumPercentage: Dispatch<SetStateAction<number | null>>;
   fetchMatchingRecyclers: any;
   //to do later: add loading property so children can access it
 };
@@ -59,13 +59,13 @@ const baseContext: RecyclerContextType = {
   selectedPrimaryMaterial: '',
   setSelectedPrimaryMaterial: () => '',
   selectedPrimaryMinimumPercentage: null,
-  setSelectedPrimaryMinimumPercentage: () => 0,
+  setSelectedPrimaryMinimumPercentage: () => null,
   secondaryMaterialFilterOptions: [],
   setSecondaryMaterialFilterOptions: () => [],
   selectedSecondaryMaterial: '',
   setSelectedSecondaryMaterial: () => '',
   selectedSecondaryMinimumPercentage: null,
-  setSelectedSecondaryMinimumPercentage: () => 0,
+  setSelectedSecondaryMinimumPercentage: () => null,
   fetchMatchingRecyclers: () => [],
 };
 // best to create a base context (or initial context) outside of the component so that it is exportable.
@@ -85,11 +85,13 @@ const RecyclerMainPage: React.FC = () => {
 
   // to do step 1: add state for all input data from MaterialFilter inputs: primary material type and percentage
   const [selectedPrimaryMaterial, setSelectedPrimaryMaterial] = useState<string>('');
-  const [selectedPrimaryMinimumPercentage, setSelectedPrimaryMinimumPercentage] =
-    useState<number>(0);
+  const [selectedPrimaryMinimumPercentage, setSelectedPrimaryMinimumPercentage] = useState<
+    number | null
+  >(null);
   const [selectedSecondaryMaterial, setSelectedSecondaryMaterial] = useState<string>('');
-  const [selectedSecondaryMinimumPercentage, setSelectedSecondaryMinimumPercentage] =
-    useState<number>(0);
+  const [selectedSecondaryMinimumPercentage, setSelectedSecondaryMinimumPercentage] = useState<
+    number | null
+  >(null);
 
   // to do step 2: create useEffect to fetch matching recyclers using state values for selected inputs
 
