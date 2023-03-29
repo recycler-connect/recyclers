@@ -37,7 +37,7 @@ export async function getMatchingRecyclers(
     )
     .lte('materials.primary_minimum_percentage', selectedPrimaryMinimumPercentage)
     .or(
-      `secondary_minimum_percentage.lte.${selectedSecondaryMinimumPercentage},secondary_minimum_percentage.is.Null`,
+      `secondary_minimum_percentage.gte.${selectedSecondaryMinimumPercentage},secondary_minimum_percentage.is.Null`,
       {
         foreignTable: 'materials',
       }
