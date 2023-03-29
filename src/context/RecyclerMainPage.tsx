@@ -43,9 +43,9 @@ type RecyclerContextType = {
   setSelectedSecondaryMaterial: Dispatch<SetStateAction<string>>;
   selectedSecondaryMinimumPercentage: number | null;
   setSelectedSecondaryMinimumPercentage: Dispatch<SetStateAction<number | null>>;
-  selectedMaterialSource: string | null;
+  selectedMaterialSource: string;
   // should this be Dispatch<SetStateAction<string | null>> or Dispatch<SetStateAction<RecyclerResultType>>? Does it matter?
-  setSelectedMaterialSource: Dispatch<SetStateAction<string | null>>;
+  setSelectedMaterialSource: Dispatch<SetStateAction<string>>;
   fetchMatchingRecyclers: any;
 };
 // if it was just js, it would be the same but the types would not be passed
@@ -69,8 +69,8 @@ const baseContext: RecyclerContextType = {
   setSelectedSecondaryMaterial: () => '',
   selectedSecondaryMinimumPercentage: null,
   setSelectedSecondaryMinimumPercentage: () => null,
-  selectedMaterialSource: null,
-  setSelectedMaterialSource: () => null,
+  selectedMaterialSource: '',
+  setSelectedMaterialSource: () => '',
   fetchMatchingRecyclers: () => [],
 };
 // best to create a base context (or initial context) outside of the component so that it is exportable.
@@ -97,7 +97,7 @@ const RecyclerMainPage: React.FC = () => {
   const [selectedSecondaryMinimumPercentage, setSelectedSecondaryMinimumPercentage] = useState<
     number | null
   >(null);
-  const [selectedMaterialSource, setSelectedMaterialSource] = useState<string | null>(null);
+  const [selectedMaterialSource, setSelectedMaterialSource] = useState<string>('');
 
   // to do step 2: create useEffect to fetch matching recyclers using state values for selected inputs
 
@@ -123,7 +123,8 @@ const RecyclerMainPage: React.FC = () => {
         selectedPrimaryMaterial,
         selectedPrimaryMinimumPercentage,
         selectedSecondaryMaterial,
-        selectedSecondaryMinimumPercentage
+        selectedSecondaryMinimumPercentage,
+        selectedMaterialSource
       );
       if (resp) {
         // update recycler list state
