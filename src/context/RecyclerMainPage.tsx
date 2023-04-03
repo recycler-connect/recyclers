@@ -1,55 +1,112 @@
 import React, { createContext, useState, Dispatch, SetStateAction, useEffect } from 'react';
-// import { recyclers } from '../data';
-import { getRecyclers } from '../services/recyclers';
+import { getAllRecyclers, getMatchingRecyclers } from '../services/recyclers';
 import Main from 'src/components/Main/Main';
+// to do: create context type file and move types there
 
 export interface RecyclerResultType {
-  // id: number;
-  // company: string;
-  // location?: string;
-  acc_circ_feedstock_data: string | null;
   acc_circ_url: string | null;
-  acrylic: boolean | null;
   comercialization_for_post_consumer: string | null;
   company: string | null;
-  cotton: boolean | null;
-  cotton_polyester: boolean | null;
   id: number;
-  input_material: string | null;
+  material_source: string | null;
   location: string | null;
-  minimum_percentage: number | null;
-  nylon: boolean | null;
-  other: boolean | null;
   output_material: string | null;
-  polyester: boolean | null;
   primary_material_type_list: string | null;
   recycling_type: string | null;
   status: string | null;
-  wool: boolean | null;
+}
+
+export interface PrimaryMaterialOptionType {
+  primary_material: string | null;
+}
+
+export interface SecondaryMaterialOptionType {
+  secondary_material: string | null;
 }
 
 type RecyclerContextType = {
   recyclerResults: RecyclerResultType[];
   setRecyclerResults: Dispatch<SetStateAction<RecyclerResultType[]>>;
-  //add loading property so children can access it
+  isLoading: boolean;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
+  error: string;
+  setError: Dispatch<SetStateAction<string>>;
+  primaryMaterialFilterOptions: PrimaryMaterialOptionType[];
+  setPrimaryMaterialFilterOptions: Dispatch<SetStateAction<PrimaryMaterialOptionType[]>>;
+  selectedPrimaryMaterial: string;
+  setSelectedPrimaryMaterial: Dispatch<SetStateAction<string>>;
+  selectedPrimaryMinimumPercentage: number | null;
+  setSelectedPrimaryMinimumPercentage: Dispatch<SetStateAction<number | null>>;
+  secondaryMaterialFilterOptions: SecondaryMaterialOptionType[];
+  setSecondaryMaterialFilterOptions: Dispatch<SetStateAction<SecondaryMaterialOptionType[]>>;
+  selectedSecondaryMaterial: string | null;
+  setSelectedSecondaryMaterial: Dispatch<SetStateAction<string | null>>;
+  selectedSecondaryMinimumPercentage: number | null;
+  setSelectedSecondaryMinimumPercentage: Dispatch<SetStateAction<number | null>>;
+  selectedMaterialSource: string;
+  // should this be Dispatch<SetStateAction<string | null>> or Dispatch<SetStateAction<RecyclerResultType>>? Does it matter?
+  setSelectedMaterialSource: Dispatch<SetStateAction<string>>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  fetchMatchingRecyclers: any;
 };
-
+// if it was just js, it would be the same but the types would not be passed
 const baseContext: RecyclerContextType = {
+  // explore null vs empty string/array - what is the advantage of one or the other?
   recyclerResults: [],
   setRecyclerResults: () => null,
+  isLoading: true,
+  setIsLoading: () => true,
+  error: '',
+  setError: () => '',
+  primaryMaterialFilterOptions: [],
+  setPrimaryMaterialFilterOptions: () => [],
+  selectedPrimaryMaterial: '',
+  setSelectedPrimaryMaterial: () => '',
+  selectedPrimaryMinimumPercentage: null,
+  setSelectedPrimaryMinimumPercentage: () => null,
+  secondaryMaterialFilterOptions: [],
+  setSecondaryMaterialFilterOptions: () => [],
+  selectedSecondaryMaterial: null,
+  setSelectedSecondaryMaterial: () => null,
+  selectedSecondaryMinimumPercentage: null,
+  setSelectedSecondaryMinimumPercentage: () => null,
+  selectedMaterialSource: '',
+  setSelectedMaterialSource: () => '',
+  fetchMatchingRecyclers: () => [],
 };
-
+// best to create a base context (or initial context) outside of the component so that it is exportable.
 export const RecyclerContext = createContext<RecyclerContextType>(baseContext);
 
 const RecyclerMainPage: React.FC = () => {
-  // make sure to have empty array in state which we have done!
-  // where we left off: need to utilize async somehow
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>('');
   const [recyclerResults, setRecyclerResults] = useState<RecyclerResultType[]>([]);
+  // to do step 1: add state for material types to map through in MaterialFilter input selects
+  const [primaryMaterialFilterOptions, setPrimaryMaterialFilterOptions] = useState<
+    PrimaryMaterialOptionType[]
+  >([]);
+  const [secondaryMaterialFilterOptions, setSecondaryMaterialFilterOptions] = useState<
+    SecondaryMaterialOptionType[]
+  >([]);
 
+  // to do step 1: add state for all input data from MaterialFilter inputs: primary material type and percentage
+  const [selectedPrimaryMaterial, setSelectedPrimaryMaterial] = useState<string>('');
+  const [selectedPrimaryMinimumPercentage, setSelectedPrimaryMinimumPercentage] = useState<
+    number | null
+  >(100);
+  const [selectedSecondaryMaterial, setSelectedSecondaryMaterial] = useState<string | null>(
+    'Other'
+  );
+  const [selectedSecondaryMinimumPercentage, setSelectedSecondaryMinimumPercentage] = useState<
+    number | null
+  >(0);
+  const [selectedMaterialSource, setSelectedMaterialSource] = useState<string>('');
+
+  // for later: do we want to refactor useEffect and move to new file: no, keep it here!
   useEffect(() => {
     const fetchRecyclerData = async () => {
       try {
-        const data = await getRecyclers();
+        const data = await getAllRecyclers();
         if (data) {
           setRecyclerResults(data);
         }
@@ -61,9 +118,51 @@ const RecyclerMainPage: React.FC = () => {
     fetchRecyclerData();
   }, []);
 
+  const fetchMatchingRecyclers = async () => {
+    try {
+      const resp = await getMatchingRecyclers(
+        selectedPrimaryMaterial,
+        selectedPrimaryMinimumPercentage,
+        selectedSecondaryMaterial,
+        selectedSecondaryMinimumPercentage,
+        selectedMaterialSource
+      );
+      if (resp) {
+        setRecyclerResults(resp);
+        setIsLoading(false);
+      }
+    } catch (e) {
+      alert(e);
+    }
+  };
+
   return (
     <div>
-      <RecyclerContext.Provider value={{ recyclerResults, setRecyclerResults }}>
+      <RecyclerContext.Provider
+        value={{
+          recyclerResults,
+          setRecyclerResults,
+          isLoading,
+          setIsLoading,
+          error,
+          setError,
+          primaryMaterialFilterOptions,
+          setPrimaryMaterialFilterOptions,
+          selectedPrimaryMaterial,
+          setSelectedPrimaryMaterial,
+          selectedPrimaryMinimumPercentage,
+          setSelectedPrimaryMinimumPercentage,
+          secondaryMaterialFilterOptions,
+          setSecondaryMaterialFilterOptions,
+          selectedSecondaryMaterial,
+          setSelectedSecondaryMaterial,
+          selectedSecondaryMinimumPercentage,
+          setSelectedSecondaryMinimumPercentage,
+          selectedMaterialSource,
+          setSelectedMaterialSource,
+          fetchMatchingRecyclers,
+        }}
+      >
         <Main />
       </RecyclerContext.Provider>
     </div>
