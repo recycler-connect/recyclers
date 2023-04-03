@@ -46,6 +46,7 @@ type RecyclerContextType = {
   selectedMaterialSource: string;
   // should this be Dispatch<SetStateAction<string | null>> or Dispatch<SetStateAction<RecyclerResultType>>? Does it matter?
   setSelectedMaterialSource: Dispatch<SetStateAction<string>>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   fetchMatchingRecyclers: any;
 };
 // if it was just js, it would be the same but the types would not be passed

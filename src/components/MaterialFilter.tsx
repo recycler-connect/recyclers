@@ -98,6 +98,7 @@ const MaterialFilter: React.FC = () => {
             placeholder="100"
             min="0"
             max="100"
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onChange={(e) => setSelectedPrimaryMinimumPercentage(e.target.value as any)}
           ></input>
         </label>
@@ -130,6 +131,7 @@ const MaterialFilter: React.FC = () => {
                   placeholder="Material Percentage"
                   min="0"
                   max="100"
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
                   onChange={(e) => setSelectedSecondaryMinimumPercentage(e.target.value as any)}
                 ></input>
               </label>
@@ -142,6 +144,7 @@ const MaterialFilter: React.FC = () => {
         <label>
           <label>
             Material Source
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
             <select onChange={(e) => setSelectedMaterialSource(e.target.value as any)}>
               <option placeholder="Select">Select one</option>
               <option value="Post Consumer">Post Consumer</option>
