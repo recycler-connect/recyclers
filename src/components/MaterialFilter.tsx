@@ -40,7 +40,7 @@ const MaterialFilter: React.FC = () => {
       }
     };
     fetchMaterialOptions();
-  }, []);
+  }, [setError, setIsLoading, setPrimaryMaterialFilterOptions]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -56,7 +56,7 @@ const MaterialFilter: React.FC = () => {
       }
     };
     fetchSecondaryMaterialOptions();
-  }, []);
+  }, [setError, setIsLoading, setSecondaryMaterialFilterOptions]);
 
   // to do step 1.5: declare handleSubmit function to update selected input state
   // to do:
