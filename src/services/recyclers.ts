@@ -22,14 +22,13 @@ export async function getSecondaryMaterialOptions() {
 export async function getMatchingRecyclers(
   selectedPrimaryMaterial: string,
   selectedPrimaryMinimumPercentage: number | null,
-  selectedSecondaryMaterial: string,
-  selectedSecondaryMinimumPercentage: number | null,
-  selectedMaterialSource: string
+  selectedSecondaryMaterial: string | null,
+  selectedSecondaryMinimumPercentage: number | null
+  // selectedMaterialSource: string
 ) {
   const matchingRecyclers = await client
     .from('recyclers')
     .select('*, materials!inner(*)')
-    .like('material_source', `%${selectedMaterialSource}%`)
     .eq('materials.primary_material', selectedPrimaryMaterial)
     .or(
       `secondary_material.eq.${selectedSecondaryMaterial},secondary_material.eq.Other,secondary_material.is.Null`,

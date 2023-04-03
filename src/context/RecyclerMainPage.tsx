@@ -39,8 +39,8 @@ type RecyclerContextType = {
   setSelectedPrimaryMinimumPercentage: Dispatch<SetStateAction<number | null>>;
   secondaryMaterialFilterOptions: SecondaryMaterialOptionType[];
   setSecondaryMaterialFilterOptions: Dispatch<SetStateAction<SecondaryMaterialOptionType[]>>;
-  selectedSecondaryMaterial: string;
-  setSelectedSecondaryMaterial: Dispatch<SetStateAction<string>>;
+  selectedSecondaryMaterial: string | null;
+  setSelectedSecondaryMaterial: Dispatch<SetStateAction<string | null>>;
   selectedSecondaryMinimumPercentage: number | null;
   setSelectedSecondaryMinimumPercentage: Dispatch<SetStateAction<number | null>>;
   selectedMaterialSource: string;
@@ -65,8 +65,8 @@ const baseContext: RecyclerContextType = {
   setSelectedPrimaryMinimumPercentage: () => null,
   secondaryMaterialFilterOptions: [],
   setSecondaryMaterialFilterOptions: () => [],
-  selectedSecondaryMaterial: '',
-  setSelectedSecondaryMaterial: () => '',
+  selectedSecondaryMaterial: null,
+  setSelectedSecondaryMaterial: () => null,
   selectedSecondaryMinimumPercentage: null,
   setSelectedSecondaryMinimumPercentage: () => null,
   selectedMaterialSource: '',
@@ -93,10 +93,12 @@ const RecyclerMainPage: React.FC = () => {
   const [selectedPrimaryMinimumPercentage, setSelectedPrimaryMinimumPercentage] = useState<
     number | null
   >(null);
-  const [selectedSecondaryMaterial, setSelectedSecondaryMaterial] = useState<string>('');
+  const [selectedSecondaryMaterial, setSelectedSecondaryMaterial] = useState<string | null>(
+    'Other'
+  );
   const [selectedSecondaryMinimumPercentage, setSelectedSecondaryMinimumPercentage] = useState<
     number | null
-  >(null);
+  >(0);
   const [selectedMaterialSource, setSelectedMaterialSource] = useState<string>('');
 
   // to do step 2: create useEffect to fetch matching recyclers using state values for selected inputs
@@ -123,8 +125,8 @@ const RecyclerMainPage: React.FC = () => {
         selectedPrimaryMaterial,
         selectedPrimaryMinimumPercentage,
         selectedSecondaryMaterial,
-        selectedSecondaryMinimumPercentage,
-        selectedMaterialSource
+        selectedSecondaryMinimumPercentage
+        // selectedMaterialSource
       );
       if (resp) {
         // update recycler list state
