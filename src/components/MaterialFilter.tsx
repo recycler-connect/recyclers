@@ -95,12 +95,13 @@ const MaterialFilter: React.FC = () => {
             type="number"
             className="filter-select"
             id="primary-material-percentage"
-            placeholder="Material Percentage"
+            placeholder="100"
             min="0"
             max="100"
             onChange={(e) => setSelectedPrimaryMinimumPercentage(e.target.value as any)}
           ></input>
         </label>
+        {/* TO DO: add timeout so secondary material fields don't flash as user starts typing '100' */}
         {selectedPrimaryMinimumPercentage === null ||
           (selectedPrimaryMinimumPercentage < 100 && (
             <>
@@ -134,10 +135,10 @@ const MaterialFilter: React.FC = () => {
               </label>
             </>
           ))}
-        <label>
+        {/* <label>
           Weight
           <input className="filter-select" placeholder="Weight" id="weight"></input>
-        </label>
+        </label> */}
         <label>
           <label>
             Material Source
@@ -147,11 +148,11 @@ const MaterialFilter: React.FC = () => {
               <option value="Post Industrial">Post Industrial</option>
             </select>
           </label>
-          I am a...
+          {/* I am a...
           <select>
             <option value="company">Company</option>
             <option value="individual">Individual</option>
-          </select>
+          </select> */}
         </label>
         <button onClick={handleSubmit}>Submit</button>
       </form>

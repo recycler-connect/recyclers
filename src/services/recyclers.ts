@@ -23,8 +23,8 @@ export async function getMatchingRecyclers(
   selectedPrimaryMaterial: string,
   selectedPrimaryMinimumPercentage: number | null,
   selectedSecondaryMaterial: string | null,
-  selectedSecondaryMinimumPercentage: number | null
-  // selectedMaterialSource: string
+  selectedSecondaryMinimumPercentage: number | null,
+  selectedMaterialSource: string
 ) {
   const matchingRecyclers = await client
     .from('recyclers')
@@ -42,6 +42,9 @@ export async function getMatchingRecyclers(
       {
         foreignTable: 'materials',
       }
+    )
+    .or(
+      `material_source.eq.${selectedMaterialSource},material_source.eq.Post Industrial or Post Consumer`
     )
     .order('company', { ascending: true });
   return matchingRecyclers.data;

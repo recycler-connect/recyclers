@@ -92,7 +92,7 @@ const RecyclerMainPage: React.FC = () => {
   const [selectedPrimaryMaterial, setSelectedPrimaryMaterial] = useState<string>('');
   const [selectedPrimaryMinimumPercentage, setSelectedPrimaryMinimumPercentage] = useState<
     number | null
-  >(null);
+  >(100);
   const [selectedSecondaryMaterial, setSelectedSecondaryMaterial] = useState<string | null>(
     'Other'
   );
@@ -100,8 +100,6 @@ const RecyclerMainPage: React.FC = () => {
     number | null
   >(0);
   const [selectedMaterialSource, setSelectedMaterialSource] = useState<string>('');
-
-  // to do step 2: create useEffect to fetch matching recyclers using state values for selected inputs
 
   // for later: do we want to refactor useEffect and move to new file: no, keep it here!
   useEffect(() => {
@@ -125,11 +123,10 @@ const RecyclerMainPage: React.FC = () => {
         selectedPrimaryMaterial,
         selectedPrimaryMinimumPercentage,
         selectedSecondaryMaterial,
-        selectedSecondaryMinimumPercentage
-        // selectedMaterialSource
+        selectedSecondaryMinimumPercentage,
+        selectedMaterialSource
       );
       if (resp) {
-        // update recycler list state
         setRecyclerResults(resp);
         setIsLoading(false);
       }
