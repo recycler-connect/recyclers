@@ -46,8 +46,7 @@ type RecyclerContextType = {
   selectedMaterialSource: string;
   // should this be Dispatch<SetStateAction<string | null>> or Dispatch<SetStateAction<RecyclerResultType>>? Does it matter?
   setSelectedMaterialSource: Dispatch<SetStateAction<string>>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  fetchMatchingRecyclers: any;
+  onSubmitFilterForm: Function;
 };
 // if it was just js, it would be the same but the types would not be passed
 const baseContext: RecyclerContextType = {
@@ -72,7 +71,7 @@ const baseContext: RecyclerContextType = {
   setSelectedSecondaryMinimumPercentage: () => null,
   selectedMaterialSource: '',
   setSelectedMaterialSource: () => '',
-  fetchMatchingRecyclers: () => [],
+  onSubmitFilterForm: null,
 };
 // best to create a base context (or initial context) outside of the component so that it is exportable.
 export const RecyclerContext = createContext<RecyclerContextType>(baseContext);
@@ -136,6 +135,10 @@ const RecyclerMainPage: React.FC = () => {
     }
   };
 
+  const onSubmitFilterForm = () => {
+    fetchMatchingRecyclers();
+  };
+
   return (
     <div>
       <RecyclerContext.Provider
@@ -160,7 +163,7 @@ const RecyclerMainPage: React.FC = () => {
           setSelectedSecondaryMinimumPercentage,
           selectedMaterialSource,
           setSelectedMaterialSource,
-          fetchMatchingRecyclers,
+          onSubmitFilterForm,
         }}
       >
         <Main />
