@@ -12,7 +12,7 @@ const MaterialFilter: React.FC = () => {
     setIsLoading,
     selectedPrimaryMinimumPercentage,
     setSelectedPrimaryMaterial,
-    fetchMatchingRecyclers,
+    onSubmitFilterForm,
     setPrimaryMaterialFilterOptions,
     setSelectedPrimaryMinimumPercentage,
     setError,
@@ -64,7 +64,7 @@ const MaterialFilter: React.FC = () => {
     e.preventDefault();
     setIsLoading(true);
     // call fetch matching recyclers
-    fetchMatchingRecyclers();
+    onSubmitFilterForm();
   };
 
   return (
