@@ -3,7 +3,7 @@ import { client } from './client';
 // to do step 1: create function to get material types
 export async function getMaterialOptions() {
   const materialTypes = await client
-    .from('distinct_materials')
+    .from('distinct_materials_v2_0')
     .select('primary_material')
     .order('primary_material', { ascending: true });
   // console.log('=======materialTypes', materialTypes);
@@ -12,7 +12,7 @@ export async function getMaterialOptions() {
 
 export async function getSecondaryMaterialOptions() {
   const secondaryMaterialTypes = await client
-    .from('distinct_secondary_materials2')
+    .from('distinct_secondary_materials_v2_0')
     .select('secondary_material')
     .order('secondary_material', { ascending: true });
   return secondaryMaterialTypes.data;
