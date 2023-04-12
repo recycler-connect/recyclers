@@ -51,7 +51,7 @@ export async function getMatchingRecyclers(
 }
 
 export async function getAllRecyclers() {
-  const recyclerResp = await client.from('recyclers').select('*');
+  const recyclerResp = await client.from('recyclers_v2').select('*');
   //to do later: add error handler here
   // console.log('=======recyclerResp', recyclerResp);
   return recyclerResp.data;
