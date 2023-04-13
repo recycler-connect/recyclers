@@ -30,12 +30,9 @@ export async function getMatchingRecyclers(
     .from('recyclers_v2')
     .select('*, materials_v2!inner(*)')
     .eq('materials_v2.primary_material', selectedPrimaryMaterial)
-    .or(
-      `secondary_material.eq.${selectedSecondaryMaterial},secondary_material.eq.Other,secondary_material.is.Null`,
-      {
-        foreignTable: 'materials_v2',
-      }
-    )
+    .or(`secondary_material.eq.${selectedSecondaryMaterial},secondary_material.is.Null`, {
+      foreignTable: 'materials_v2',
+    })
     .lte('materials_v2.primary_minimum_percentage', selectedPrimaryMinimumPercentage)
     .or(
       `secondary_minimum_percentage.gte.${selectedSecondaryMinimumPercentage},secondary_minimum_percentage.is.Null`,
