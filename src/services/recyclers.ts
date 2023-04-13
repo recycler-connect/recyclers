@@ -14,6 +14,7 @@ export async function getSecondaryMaterialOptions() {
   const secondaryMaterialTypes = await client
     .from('distinct_secondary_materials_v2_0')
     .select('secondary_material')
+    .not('secondary_material', 'is', null)
     .order('secondary_material', { ascending: true });
   return secondaryMaterialTypes.data;
 }
