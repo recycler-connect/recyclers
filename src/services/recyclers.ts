@@ -3,7 +3,7 @@ import { client } from './client';
 // to do step 1: create function to get material types
 export async function getMaterialOptions() {
   const materialTypes = await client
-    .from('distinct_materials')
+    .from('distinct_materials_v2_0')
     .select('primary_material')
     .order('primary_material', { ascending: true });
   // console.log('=======materialTypes', materialTypes);
@@ -12,8 +12,9 @@ export async function getMaterialOptions() {
 
 export async function getSecondaryMaterialOptions() {
   const secondaryMaterialTypes = await client
-    .from('distinct_secondary_materials2')
+    .from('distinct_secondary_materials_v2_0')
     .select('secondary_material')
+    .not('secondary_material', 'is', null)
     .order('secondary_material', { ascending: true });
   return secondaryMaterialTypes.data;
 }
@@ -27,20 +28,27 @@ export async function getMatchingRecyclers(
   selectedMaterialSource: string
 ) {
   const matchingRecyclers = await client
-    .from('recyclers')
-    .select('*, materials!inner(*)')
-    .eq('materials.primary_material', selectedPrimaryMaterial)
+    .from('recyclers_v2')
+    .select('*, materials_v2!inner(*)')
     .or(
-      `secondary_material.eq.${selectedSecondaryMaterial},secondary_material.eq.Other,secondary_material.is.Null`,
+      `primary_material.eq.${selectedPrimaryMaterial},primary_material.eq.More than one Primary`,
       {
-        foreignTable: 'materials',
+        foreignTable: 'materials_v2',
       }
     )
-    .lte('materials.primary_minimum_percentage', selectedPrimaryMinimumPercentage)
+    .or(`secondary_material.eq.${selectedSecondaryMaterial},secondary_material.is.Null`, {
+      foreignTable: 'materials_v2',
+    })
+    .or(
+      `primary_minimum_percentage.lte.${selectedPrimaryMinimumPercentage},primary_material.eq.More than one Primary`,
+      {
+        foreignTable: 'materials_v2',
+      }
+    )
     .or(
       `secondary_minimum_percentage.gte.${selectedSecondaryMinimumPercentage},secondary_minimum_percentage.is.Null`,
       {
-        foreignTable: 'materials',
+        foreignTable: 'materials_v2',
       }
     )
     .or(
@@ -51,7 +59,7 @@ export async function getMatchingRecyclers(
 }
 
 export async function getAllRecyclers() {
-  const recyclerResp = await client.from('recyclers').select('*');
+  const recyclerResp = await client.from('recyclers_v2').select('*');
   //to do later: add error handler here
   // console.log('=======recyclerResp', recyclerResp);
   return recyclerResp.data;
