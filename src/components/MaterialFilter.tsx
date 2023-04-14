@@ -22,6 +22,7 @@ const MaterialFilter: React.FC = () => {
     setSelectedSecondaryMinimumPercentage,
     setSelectedMaterialSource,
     setSelectedWeight,
+    setSelectedWeightUnit,
   } = useContext(RecyclerContext);
   // to do: move fetch options from mainPage
   // done: move fetchmatching to mainpage
@@ -161,6 +162,14 @@ const MaterialFilter: React.FC = () => {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onChange={(e) => setSelectedWeight(e.target.value as any)}
           ></input>
+          <select
+            className="filter-select"
+            id="unit"
+            onChange={(e) => setSelectedWeightUnit(e.target.value as any)}
+          >
+            <option>lb</option>
+            <option>kg</option>
+          </select>
         </label>
         {/* I am a...
           <select>
