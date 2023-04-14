@@ -23,6 +23,7 @@ const MaterialFilter: React.FC = () => {
     setSelectedMaterialSource,
     setSelectedWeight,
     setSelectedWeightUnit,
+    setSelectedZip,
   } = useContext(RecyclerContext);
   // to do: move fetch options from mainPage
   // done: move fetchmatching to mainpage
@@ -144,15 +145,6 @@ const MaterialFilter: React.FC = () => {
           <input className="filter-select" placeholder="Weight" id="weight"></input>
         </label> */}
         <label>
-          Material Source
-          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-          <select onChange={(e) => setSelectedMaterialSource(e.target.value as any)}>
-            <option placeholder="Select">Select one</option>
-            <option value="Post Consumer">Post Consumer</option>
-            <option value="Post Industrial">Post Industrial</option>
-          </select>
-        </label>
-        <label>
           Weight
           <input
             type="number"
@@ -170,6 +162,25 @@ const MaterialFilter: React.FC = () => {
             <option>lb</option>
             <option>kg</option>
           </select>
+        </label>
+        <label>
+          Material Source
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+          <select onChange={(e) => setSelectedMaterialSource(e.target.value as any)}>
+            <option placeholder="Select">Select one</option>
+            <option value="Post Consumer">Post Consumer</option>
+            <option value="Post Industrial">Post Industrial</option>
+          </select>
+        </label>
+        <label>
+          Material Postal Code Location
+          <input
+            onChange={(e) => setSelectedZip(e.target.value as any)}
+            type="text"
+            className="filter-select"
+            id="zip"
+            placeholder="Zip Code"
+          ></input>
         </label>
         {/* I am a...
           <select>

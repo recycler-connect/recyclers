@@ -51,6 +51,8 @@ type RecyclerContextType = {
   setSelectedWeight: Dispatch<SetStateAction<number | null>>;
   selectedWeightUnit: string | null;
   setSelectedWeightUnit: Dispatch<SetStateAction<string | null>>;
+  selectedZip: string | null;
+  setSelectedZip: Dispatch<SetStateAction<String | null>>;
 };
 // if it was just js, it would be the same but the types would not be passed
 const baseContext: RecyclerContextType = {
@@ -80,6 +82,8 @@ const baseContext: RecyclerContextType = {
   setSelectedWeight: () => null,
   selectedWeightUnit: '',
   setSelectedWeightUnit: () => '',
+  selectedZip: null,
+  setSelectedZip: () => null,
 };
 // best to create a base context (or initial context) outside of the component so that it is exportable.
 export const RecyclerContext = createContext<RecyclerContextType>(baseContext);
@@ -110,6 +114,7 @@ const RecyclerMainPage: React.FC = () => {
   const [selectedMaterialSource, setSelectedMaterialSource] = useState<string>('');
   const [selectedWeight, setSelectedWeight] = useState<number | null>(null);
   const [selectedWeightUnit, setSelectedWeightUnit] = useState<string | null>('lb');
+  const [selectedZip, setSelectedZip] = useState<string | null>(null);
   // for later: do we want to refactor useEffect and move to new file: no, keep it here!
   useEffect(() => {
     const fetchRecyclerData = async () => {
@@ -177,6 +182,8 @@ const RecyclerMainPage: React.FC = () => {
           setSelectedWeight,
           selectedWeightUnit,
           setSelectedWeightUnit,
+          selectedZip,
+          setSelectedZip,
         }}
       >
         <Main />
