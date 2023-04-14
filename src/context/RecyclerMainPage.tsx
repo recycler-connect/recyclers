@@ -47,6 +47,8 @@ type RecyclerContextType = {
   // should this be Dispatch<SetStateAction<string | null>> or Dispatch<SetStateAction<RecyclerResultType>>? Does it matter?
   setSelectedMaterialSource: Dispatch<SetStateAction<string>>;
   onSubmitFilterForm: Function;
+  selectedWeight: number | null;
+  setSelectedWeight: Dispatch<SetStateAction<number | null>>;
 };
 // if it was just js, it would be the same but the types would not be passed
 const baseContext: RecyclerContextType = {
@@ -72,6 +74,8 @@ const baseContext: RecyclerContextType = {
   selectedMaterialSource: '',
   setSelectedMaterialSource: () => '',
   onSubmitFilterForm: null,
+  selectedWeight: null,
+  setSelectedWeight: () => null,
 };
 // best to create a base context (or initial context) outside of the component so that it is exportable.
 export const RecyclerContext = createContext<RecyclerContextType>(baseContext);
@@ -100,7 +104,7 @@ const RecyclerMainPage: React.FC = () => {
     number | null
   >(0);
   const [selectedMaterialSource, setSelectedMaterialSource] = useState<string>('');
-
+  const [selectedWeight, setSelectedWeight] = useState<number | null>(null);
   // for later: do we want to refactor useEffect and move to new file: no, keep it here!
   useEffect(() => {
     const fetchRecyclerData = async () => {
@@ -164,6 +168,8 @@ const RecyclerMainPage: React.FC = () => {
           selectedMaterialSource,
           setSelectedMaterialSource,
           onSubmitFilterForm,
+          selectedWeight,
+          setSelectedWeight,
         }}
       >
         <Main />

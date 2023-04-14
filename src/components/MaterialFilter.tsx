@@ -21,6 +21,7 @@ const MaterialFilter: React.FC = () => {
     setSelectedSecondaryMaterial,
     setSelectedSecondaryMinimumPercentage,
     setSelectedMaterialSource,
+    setSelectedWeight,
   } = useContext(RecyclerContext);
   // to do: move fetch options from mainPage
   // done: move fetchmatching to mainpage
@@ -142,21 +143,30 @@ const MaterialFilter: React.FC = () => {
           <input className="filter-select" placeholder="Weight" id="weight"></input>
         </label> */}
         <label>
-          <label>
-            Material Source
-            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-            <select onChange={(e) => setSelectedMaterialSource(e.target.value as any)}>
-              <option placeholder="Select">Select one</option>
-              <option value="Post Consumer">Post Consumer</option>
-              <option value="Post Industrial">Post Industrial</option>
-            </select>
-          </label>
-          {/* I am a...
+          Material Source
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+          <select onChange={(e) => setSelectedMaterialSource(e.target.value as any)}>
+            <option placeholder="Select">Select one</option>
+            <option value="Post Consumer">Post Consumer</option>
+            <option value="Post Industrial">Post Industrial</option>
+          </select>
+        </label>
+        <label>
+          Weight
+          <input
+            type="number"
+            className="filter-select"
+            id="weight"
+            placeholder="Weight"
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            onChange={(e) => setSelectedWeight(e.target.value as any)}
+          ></input>
+        </label>
+        {/* I am a...
           <select>
             <option value="company">Company</option>
             <option value="individual">Individual</option>
           </select> */}
-        </label>
         <button onClick={handleSubmit}>Submit</button>
       </form>
       {isLoading && <h1>Loading...</h1>}
