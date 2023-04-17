@@ -149,7 +149,6 @@ const MaterialFilter: React.FC = () => {
             type="number"
             className="filter-select"
             id="weight"
-            placeholder="Weight"
             required
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onChange={(e) => setSelectedWeight(e.target.value as any)}
@@ -183,7 +182,6 @@ const MaterialFilter: React.FC = () => {
             type="text"
             className="filter-select"
             id="zip"
-            placeholder="Zip Code"
             onChange={(e) => setSelectedZip(e.target.value as string | null)}
             required
           ></input>
