@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { FormEvent, useEffect } from 'react';
 import { useContext } from 'react';
 import './MaterialFilter.css';
 import { RecyclerContext } from 'src/context/RecyclerMainPage';
@@ -64,7 +64,7 @@ const MaterialFilter: React.FC = () => {
 
   // to do step 1.5: declare handleSubmit function to update selected input state
   // to do:
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     // call fetch matching recyclers
@@ -74,16 +74,17 @@ const MaterialFilter: React.FC = () => {
   return (
     <>
       {/* <h1>{recyclers[0].company}</h1> */}
-      <form className="material-filter">
+      <form className="material-filter" onSubmit={handleSubmit}>
         <label>
           Primary Material
           <select
             id="primary-material"
             className="filter-select"
-            placeholder="Primary Material"
             onChange={(e) => setSelectedPrimaryMaterial(e.target.value)}
+            required
           >
-            <option placeholder="Select">Select one</option>
+            <option value=""></option>
+            {/* <option placeholder="Select"></option> */}
             {/* to do step 1: map through and render material types as options */}
             {primaryMaterialFilterOptions.map(({ primary_material }) => (
               <option key={primary_material} value={primary_material as string}>
@@ -118,7 +119,7 @@ const MaterialFilter: React.FC = () => {
                   placeholder="Secondary Material"
                   onChange={(e) => setSelectedSecondaryMaterial(e.target.value)}
                 >
-                  <option placeholder="Select">Select one</option>
+                  <option placeholder="" value=""></option>
                   {secondaryMaterialFilterOptions.map(({ secondary_material }) => (
                     <option key={secondary_material} value={secondary_material as string}>
                       {secondary_material}
@@ -141,10 +142,6 @@ const MaterialFilter: React.FC = () => {
               </label>
             </>
           ))}
-        {/* <label>
-          Weight
-          <input className="filter-select" placeholder="Weight" id="weight"></input>
-        </label> */}
         <label>
           Weight
           <input
@@ -152,6 +149,7 @@ const MaterialFilter: React.FC = () => {
             className="filter-select"
             id="weight"
             placeholder="Weight"
+            required
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onChange={(e) => setSelectedWeight(e.target.value as any)}
           ></input>
@@ -171,8 +169,9 @@ const MaterialFilter: React.FC = () => {
             className="filter-select"
             id="material-source"
             onChange={(e) => setSelectedMaterialSource(e.target.value as string | null)}
+            required
           >
-            <option placeholder="Select">Select one</option>
+            <option value=""></option>
             <option value="Post Consumer">Post Consumer</option>
             <option value="Post Industrial">Post Industrial</option>
           </select>
@@ -185,20 +184,25 @@ const MaterialFilter: React.FC = () => {
             id="zip"
             placeholder="Zip Code"
             onChange={(e) => setSelectedZip(e.target.value as string | null)}
+            required
           ></input>
         </label>
         <label>
-          I am a...
+          I am looking to recycle materials for a...
           <select
             className="filter-select"
             id="user-group"
             onChange={(e) => setSelectedUserGroup(e.target.value as string | null)}
+            required
           >
+            <option value=""></option>
             <option value="company">Company</option>
             <option value="individual">Individual</option>
           </select>
         </label>
-        <button onClick={handleSubmit}>Submit</button>
+        <button type="submit" value="submit">
+          Submit
+        </button>
       </form>
       {isLoading && <h1>Loading...</h1>}
     </>
