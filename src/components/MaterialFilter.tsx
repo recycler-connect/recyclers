@@ -157,7 +157,7 @@ const MaterialFilter: React.FC = () => {
           <select
             className="filter-select"
             id="unit"
-            onChange={(e) => setSelectedWeightUnit(e.target.value as any)}
+            onChange={(e) => setSelectedWeightUnit(e.target.value as string)}
           >
             <option>lb</option>
             <option>kg</option>
