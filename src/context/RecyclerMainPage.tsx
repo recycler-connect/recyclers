@@ -47,6 +47,14 @@ type RecyclerContextType = {
   // should this be Dispatch<SetStateAction<string | null>> or Dispatch<SetStateAction<RecyclerResultType>>? Does it matter?
   setSelectedMaterialSource: Dispatch<SetStateAction<string>>;
   onSubmitFilterForm: Function;
+  selectedWeight: number | null;
+  setSelectedWeight: Dispatch<SetStateAction<number | null>>;
+  selectedWeightUnit: string | null;
+  setSelectedWeightUnit: Dispatch<SetStateAction<string | null>>;
+  selectedZip: string | null;
+  setSelectedZip: Dispatch<SetStateAction<String | null>>;
+  selectedUserGroup: string | null;
+  setSelectedUserGroup: Dispatch<SetStateAction<string | null>>;
 };
 // if it was just js, it would be the same but the types would not be passed
 const baseContext: RecyclerContextType = {
@@ -72,6 +80,14 @@ const baseContext: RecyclerContextType = {
   selectedMaterialSource: '',
   setSelectedMaterialSource: () => '',
   onSubmitFilterForm: null,
+  selectedWeight: null,
+  setSelectedWeight: () => null,
+  selectedWeightUnit: '',
+  setSelectedWeightUnit: () => '',
+  selectedZip: null,
+  setSelectedZip: () => null,
+  selectedUserGroup: null,
+  setSelectedUserGroup: () => null,
 };
 // best to create a base context (or initial context) outside of the component so that it is exportable.
 export const RecyclerContext = createContext<RecyclerContextType>(baseContext);
@@ -100,7 +116,10 @@ const RecyclerMainPage: React.FC = () => {
     number | null
   >(0);
   const [selectedMaterialSource, setSelectedMaterialSource] = useState<string>('');
-
+  const [selectedWeight, setSelectedWeight] = useState<number | null>(null);
+  const [selectedWeightUnit, setSelectedWeightUnit] = useState<string | null>('lb');
+  const [selectedZip, setSelectedZip] = useState<string | null>(null);
+  const [selectedUserGroup, setSelectedUserGroup] = useState<string | null>(null);
   // for later: do we want to refactor useEffect and move to new file: no, keep it here!
   useEffect(() => {
     const fetchRecyclerData = async () => {
@@ -164,6 +183,14 @@ const RecyclerMainPage: React.FC = () => {
           selectedMaterialSource,
           setSelectedMaterialSource,
           onSubmitFilterForm,
+          selectedWeight,
+          setSelectedWeight,
+          selectedWeightUnit,
+          setSelectedWeightUnit,
+          selectedZip,
+          setSelectedZip,
+          selectedUserGroup,
+          setSelectedUserGroup,
         }}
       >
         <Main />
