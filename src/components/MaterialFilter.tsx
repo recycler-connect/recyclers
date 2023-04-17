@@ -78,6 +78,7 @@ const MaterialFilter: React.FC = () => {
         <label>
           Primary Material
           <select
+            autoFocus
             id="primary-material"
             className="filter-select"
             onChange={(e) => setSelectedPrimaryMaterial(e.target.value)}
