@@ -8,7 +8,7 @@ export const getMockRecycler = (): RecyclerResultType => {
     acc_circ_url: chance.url(),
     comercialization_for_post_consumer: chance.string(),
     company: chance.company(),
-    id: chance.id(),
+    id: chance.natural(),
     material_source: chance.string(),
     location: chance.word(),
     output_material: chance.string(),

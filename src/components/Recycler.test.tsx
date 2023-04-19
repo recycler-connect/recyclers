@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import Recycler from './Recycler';
-import { getMockRecycler } from 'src/mocks/mockRecycler';
+import { getMockRecycler } from '../mocks/mockRecycler';
 
 describe('Recycler component', () => {
 
