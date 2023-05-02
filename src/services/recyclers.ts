@@ -64,3 +64,33 @@ export async function getAllRecyclers() {
   // console.log('=======recyclerResp', recyclerResp);
   return recyclerResp.data;
 }
+
+export async function inputUserSelection(
+  selectedPrimaryMaterial,
+  selectedPrimaryMinimumPercentage,
+  selectedSecondaryMaterial,
+  selectedSecondaryMinimumPercentage,
+  selectedMaterialSource,
+  selectedWeight,
+  selectedWeightUnit,
+  selectedUserGroup,
+  selectedZip
+) {
+  const { data, error } = await client
+    .from('user_inputs')
+    .insert({
+      primary_material: selectedPrimaryMaterial,
+      primary_material_percentage: selectedPrimaryMinimumPercentage,
+      secondary_material: selectedSecondaryMaterial,
+      secondary_material_percentage: selectedSecondaryMinimumPercentage,
+      material_source: selectedMaterialSource,
+      weight: selectedWeight,
+      weight_unit: selectedWeightUnit,
+      user_group: selectedUserGroup,
+      zip: selectedZip,
+    });
+  if (error) {
+    throw Error;
+  }
+  return data;
+}

@@ -1,5 +1,5 @@
 import React, { createContext, useState, Dispatch, SetStateAction, useEffect } from 'react';
-import { getAllRecyclers, getMatchingRecyclers } from '../services/recyclers';
+import { getAllRecyclers, getMatchingRecyclers, inputUserSelection } from '../services/recyclers';
 import Main from 'src/components/Main/Main';
 // to do: create context type file and move types there
 
@@ -154,7 +154,26 @@ const RecyclerMainPage: React.FC = () => {
     }
   };
 
+  const storeUserSelection = async () => {
+    try {
+      await inputUserSelection(
+        selectedPrimaryMaterial,
+        selectedPrimaryMinimumPercentage,
+        selectedSecondaryMaterial,
+        selectedSecondaryMinimumPercentage,
+        selectedMaterialSource,
+        selectedWeight,
+        selectedWeightUnit,
+        selectedUserGroup,
+        selectedZip
+      );
+    } catch (e) {
+      alert(e);
+    }
+  };
+
   const onSubmitFilterForm = () => {
+    storeUserSelection();
     fetchMatchingRecyclers();
   };
 
