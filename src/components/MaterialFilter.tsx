@@ -75,8 +75,12 @@ const MaterialFilter: React.FC = () => {
     <>
       {/* <h1>{recyclers[0].company}</h1> */}
       <form className="material-filter" onSubmit={handleSubmit}>
+        <h3>
+          Enter your material&apos;s details to find recycling facilities ready to give them new
+          life.{' '}
+        </h3>
         <label>
-          Primary material
+          Primary material:{' '}
           <select
             autoFocus
             id="primary-material"
@@ -96,7 +100,7 @@ const MaterialFilter: React.FC = () => {
           </select>
         </label>
         <label>
-          Primary material percentage
+          Primary material percentage:{' '}
           <input
             type="number"
             className="filter-select"
@@ -113,7 +117,7 @@ const MaterialFilter: React.FC = () => {
           (selectedPrimaryMinimumPercentage < 100 && (
             <>
               <label>
-                Secondary material
+                Secondary material:{' '}
                 <select
                   id="secondary-material"
                   className="filter-select"
@@ -129,7 +133,7 @@ const MaterialFilter: React.FC = () => {
                 </select>
               </label>
               <label>
-                Secondary material percentage
+                Secondary material percentage:{' '}
                 <input
                   type="number"
                   className="filter-select"
@@ -144,7 +148,7 @@ const MaterialFilter: React.FC = () => {
             </>
           ))}
         <label>
-          Weight
+          Weight:{' '}
           <input
             type="number"
             className="filter-select"
@@ -163,8 +167,7 @@ const MaterialFilter: React.FC = () => {
           </select>
         </label>
         <label>
-          Material source
-          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+          Material source: {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           <select
             className="filter-select"
             id="material-source"
@@ -177,7 +180,7 @@ const MaterialFilter: React.FC = () => {
           </select>
         </label>
         <label>
-          Material postal code
+          Material postal code:{' '}
           <input
             type="text"
             className="filter-select"
@@ -187,7 +190,7 @@ const MaterialFilter: React.FC = () => {
           ></input>
         </label>
         <label>
-          I&apos;m recycling materials for a
+          I&apos;m recycling materials for a:{' '}
           <select
             className="filter-select"
             id="user-group"
@@ -195,12 +198,12 @@ const MaterialFilter: React.FC = () => {
             required
           >
             <option value=""></option>
-            <option value="company">Company</option>
-            <option value="individual">Individual</option>
+            <option value="company">company</option>
+            <option value="individual">individual</option>
           </select>
         </label>
-        <button type="submit" value="submit">
-          Submit
+        <button type="submit" value="submit" className="submit-button">
+          Find recyclers
         </button>
       </form>
       {isLoading && <h1>Loading...</h1>}
