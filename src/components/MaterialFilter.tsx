@@ -76,7 +76,7 @@ const MaterialFilter: React.FC = () => {
       {/* <h1>{recyclers[0].company}</h1> */}
       <form className="material-filter" onSubmit={handleSubmit}>
         <label>
-          Primary Material
+          Primary material
           <select
             autoFocus
             id="primary-material"
@@ -96,7 +96,7 @@ const MaterialFilter: React.FC = () => {
           </select>
         </label>
         <label>
-          Primary Material Percentage
+          Primary material percentage
           <input
             type="number"
             className="filter-select"
@@ -113,7 +113,7 @@ const MaterialFilter: React.FC = () => {
           (selectedPrimaryMinimumPercentage < 100 && (
             <>
               <label>
-                Secondary Material
+                Secondary material
                 <select
                   id="secondary-material"
                   className="filter-select"
@@ -129,7 +129,7 @@ const MaterialFilter: React.FC = () => {
                 </select>
               </label>
               <label>
-                Secondary Material Percentage
+                Secondary material percentage
                 <input
                   type="number"
                   className="filter-select"
@@ -163,7 +163,7 @@ const MaterialFilter: React.FC = () => {
           </select>
         </label>
         <label>
-          Material Source
+          Material source
           {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           <select
             className="filter-select"
@@ -177,7 +177,7 @@ const MaterialFilter: React.FC = () => {
           </select>
         </label>
         <label>
-          Material Postal Code Location
+          Material postal code
           <input
             type="text"
             className="filter-select"
@@ -187,7 +187,7 @@ const MaterialFilter: React.FC = () => {
           ></input>
         </label>
         <label>
-          I am looking to recycle materials for a...
+          I&apos;m recycling materials for a
           <select
             className="filter-select"
             id="user-group"
