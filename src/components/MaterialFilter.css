@@ -1,13 +1,32 @@
 .material-filter {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 5px;
   width: 80%;
   height: 30%;
+
   border-radius: 5px;
   box-shadow: 0 0 5px black;
 
   background-color: var(--colorCream);
+  padding: 15px 40px 15px 40px;
+  gap: 10px;
+  margin: 20px 0 20px 0;
+}
+
+.submit-button {
+  background-color: var(--color2);
+  font: var(--colorCream);
+  font-size: large;
+  font-weight: bold;
+  align-self: center;
   padding: 20px;
+  margin: 20px;
+  transition: transform 0.1s ease-in-out;
+}
+
+.submit-button:hover {
+  transform: scale(1.05); /* Grow the button by 10% */
 }

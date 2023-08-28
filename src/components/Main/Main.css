@@ -6,6 +6,12 @@
 }
 
 .welcome-message {
-  width: 70%;
+  width: 75%;
   margin: 15px;
+}
+
+.results-list {
+  width: 75%;
+  gap: 15px;
+  margin-bottom: 50px;
 }
