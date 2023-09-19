@@ -1,6 +1,7 @@
 import React from 'react';
 import { RecyclerResultType } from 'src/context/RecyclerMainPage';
+import './Recycler.css';
 
 export default function Recycler(props: RecyclerResultType) {
-  return <div>{props.company}</div>;
+  return <div className="recycler">{props.company}</div>;
 }
