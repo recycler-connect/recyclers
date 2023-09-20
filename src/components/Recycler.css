@@ -5,3 +5,13 @@
   margin: 15px;
   box-shadow: 3px 3px 5px grey;
 }
+
+.recycler:hover {
+  transition: transform 0.2s ease-in-out;
+  transform: scale(1.02); /* Grow the button by 10% */
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
