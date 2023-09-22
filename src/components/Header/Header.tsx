@@ -14,26 +14,27 @@ export default function Header() {
   //     console.error(error.message);
   //   }
   // };
-  const myStyle = {
-    backgroundImage: `url(${process.env.PUBLIC_URL + '/redcloth.jpeg'})`,
-    height: '50%',
-    // marginTop: '-30px',
-    fontSize: '40px',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-  };
+  // const myStyle = {
+  //   backgroundImage: `url(${process.env.PUBLIC_URL + '/redcloth.jpeg'})`,
+  //   height: '50%',
+  //   // marginTop: '-30px',
+  //   fontSize: '40px',
+  //   backgroundSize: 'cover',
+  //   backgroundRepeat: 'no-repeat',
+  // };
 
   return (
-    <header style={myStyle}>
+    <header>
+      {/* <header style={myStyle}> */}
       <img
-        src="/shirt.png"
+        src="/rc-logo.png"
         // src={
         //   'https://png.pngtree.com/png-clipart/20220910/original/pngtree-semicircle-frame-simple-png-image_8531222.png'
         // }
-        width="40"
+        width="100"
         // height="50"
       />
-      <p className="header-title">recycler connect</p>
+      {/* <p className="header-title">recycler connect</p> */}
       {/* {user && (
         <>
           <div className="welcome">Welcome {user.email}</div>{' '}

@@ -2,8 +2,9 @@ header {
   align-items: center;
   border-bottom: 6px solid var(--color1);
   color: var(--color4);
+  background-color: white;
   display: flex;
-  height: 40px;
+  height: 110px;
   justify-content: flex-start;
   padding: 20px;
   gap: 10px;
