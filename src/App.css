@@ -20,7 +20,7 @@ body {
   --color5: rgb(315, 13, 12);
   --color6: rgb(253, 238, 229);
   --colorLightOrange: rgb(227, 176, 104);
-  --colorCream: rgb(251, 238, 230);
+  --colorCream: rgb(242, 234, 229);
   --colorBurgundy: rgb(91, 13, 13);
   background-color: var(--color6);
   color: var();

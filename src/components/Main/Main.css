@@ -6,8 +6,21 @@
 }
 
 .welcome-message {
-  width: 75%;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  width: 80vw;
   margin: 15px;
+  color: white;
+  font-size: 1.15em;
+  padding: 25px;
+}
+
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.411);
 }
 
 .results-list {
