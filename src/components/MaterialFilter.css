@@ -7,15 +7,16 @@
   width: 80%;
   height: 30%;
   box-shadow: 5px 5px 5px grey;
-
-  background-color: var(--colorCream);
+  background-color: white;
+  border: 4px solid var(--colorBurgundy);
+  border-radius: 4px;
   padding: 15px 40px 15px 40px;
   gap: 10px;
   margin: 20px 0 20px 0;
 }
 
 .submit-button {
-  background-color: var(--color2);
+  background-color: var(--colorLightOrange);
   font: var(--colorCream);
   font-size: large;
   font-weight: bold;
@@ -23,6 +24,8 @@
   padding: 20px;
   margin: 20px;
   transition: transform 0.1s ease-in-out;
+  border: none;
+  border-radius: 4px;
 }
 
 .submit-button:hover {
