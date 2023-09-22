@@ -27,7 +27,7 @@ export default function Header() {
     <header>
       {/* <header style={myStyle}> */}
       <img
-        src="/rc-logo.png"
+        src="/rc-logo2.png"
         // src={
         //   'https://png.pngtree.com/png-clipart/20220910/original/pngtree-semicircle-frame-simple-png-image_8531222.png'
         // }
