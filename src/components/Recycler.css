@@ -1,9 +1,12 @@
 .recycler {
-  border: grey 1px solid;
-  padding: 5px 20px 20px 10px;
+  /* border: grey 1px solid; */
+  padding: 20px 40px;
   width: 90%;
   margin: 15px;
-  box-shadow: 3px 3px 5px grey;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.503);
+  background-color: white;
+  border-radius: 4px;
+  /* border: 1px solid var(--colorBurgundy); */
 }
 
 .recycler:hover {

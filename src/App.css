@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 1.1em;
 }
 
 * {
@@ -18,7 +19,7 @@ body {
   --color3: rgb(127, 83, 75);
   --color4: rgb(253, 241, 195);
   --color5: rgb(315, 13, 12);
-  --color6: rgb(247, 243, 240);
+  --color6: rgb(228, 215, 201);
   --colorLightOrange: rgb(242, 179, 90);
   --colorCream: rgb(229, 207, 192);
   --colorBurgundy: rgb(91, 13, 13);

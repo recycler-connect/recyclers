@@ -8,7 +8,7 @@ export default function ResultsList() {
   const { recyclerResults } = useContext(RecyclerContext);
 
   const myStyle = {
-    backgroundImage: `url(${process.env.PUBLIC_URL + '/waves.jpeg'})`,
+    backgroundImage: `url(${process.env.PUBLIC_URL + '/mustard-fabric.jpeg'})`,
     width: '100vw',
     backgroundSize: 'cover',
     // backgroundRepeat: 'no-repeat',
@@ -17,8 +17,10 @@ export default function ResultsList() {
   return (
     <div style={myStyle}>
       <div className="results-message-container">
-        <h2 className="results-message">You have {recyclerResults.length} matching recyclers! </h2>
-        <p>Click on the recycler&apos;s cards below to link to each recycler&apos;s website</p>
+        <div className="results-message">
+          <h2>You have {recyclerResults.length} matching recyclers: </h2>
+          <p>Click on the recycler&apos;s cards below to link to each recycler&apos;s website</p>
+        </div>
       </div>
       <div className="results-container">
         <div className="results-list">

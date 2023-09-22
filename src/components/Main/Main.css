@@ -20,37 +20,43 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.411);
+  background-color: rgba(0, 0, 0, 0.515);
 }
 
 .results-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(247, 246, 242, 0.626);
+  background-color: rgba(0, 0, 0, 0.198);
 }
 
 .results-message {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   /* padding-top: 40px; */
-  margin: 0;
+  margin: 15px;
   width: 80vw;
+  padding: 25px;
+  gap: 10px;
+}
+
+h2 {
+  margin: 0;
 }
 
 .results-message-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(158, 86, 36, 0.952);
-  padding: 25px;
+  /* background-color: rgba(126, 34, 5, 0.851); */
+  background-image: linear-gradient(rgba(126, 33, 5, 0.902), rgba(0, 0, 0, 0.198));
   color: white;
   font-size: 1.1em;
 }
 
 .results-list {
-  width: 75%;
+  width: 80vw;
   gap: 15px;
   margin-bottom: 50px;
 }
