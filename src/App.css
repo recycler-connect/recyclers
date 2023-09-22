@@ -18,10 +18,11 @@ body {
   --color3: rgb(127, 83, 75);
   --color4: rgb(253, 241, 195);
   --color5: rgb(315, 13, 12);
-  --color6: rgb(253, 238, 229);
-  --colorLightOrange: rgb(227, 176, 104);
-  --colorCream: rgb(242, 234, 229);
+  --color6: rgb(247, 243, 240);
+  --colorLightOrange: rgb(242, 179, 90);
+  --colorCream: rgb(229, 207, 192);
   --colorBurgundy: rgb(91, 13, 13);
+  --colorTransparentBurgundy: rgba(138, 15, 15, 0.185);
   background-color: var(--color6);
   color: var();
   cursor: default;

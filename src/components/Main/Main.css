@@ -23,6 +23,32 @@
   background-color: rgba(0, 0, 0, 0.411);
 }
 
+.results-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(247, 246, 242, 0.626);
+}
+
+.results-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding-top: 40px; */
+  margin: 0;
+  width: 80vw;
+}
+
+.results-message-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(158, 86, 36, 0.952);
+  padding: 25px;
+  color: white;
+  font-size: 1.1em;
+}
+
 .results-list {
   width: 75%;
   gap: 15px;
