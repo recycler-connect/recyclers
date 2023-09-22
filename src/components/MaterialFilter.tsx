@@ -75,10 +75,7 @@ const MaterialFilter: React.FC = () => {
     <>
       {/* <h1>{recyclers[0].company}</h1> */}
       <form className="material-filter" onSubmit={handleSubmit}>
-        <h3>
-          Enter your material&apos;s details to find recycling facilities ready to give them new
-          life.{' '}
-        </h3>
+        <h3>Enter your material&apos;s details to find matching recyclers.</h3>
         <label>
           Primary material:{' '}
           <select
@@ -203,7 +200,7 @@ const MaterialFilter: React.FC = () => {
           </select>
         </label>
         <button type="submit" value="submit" className="submit-button">
-          Find recyclers
+          find recyclers
         </button>
       </form>
       {isLoading && <h1>Loading...</h1>}
