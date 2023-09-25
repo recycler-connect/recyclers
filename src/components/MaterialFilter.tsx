@@ -63,7 +63,6 @@ const MaterialFilter: React.FC = () => {
   }, [setError, setIsLoading, setSecondaryMaterialFilterOptions]);
 
   // to do step 1.5: declare handleSubmit function to update selected input state
-  // to do:
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -73,7 +72,6 @@ const MaterialFilter: React.FC = () => {
 
   return (
     <>
-      {/* <h1>{recyclers[0].company}</h1> */}
       <div className="material-filter-container">
         <form className="material-filter" onSubmit={handleSubmit}>
           <h3>Enter your material&apos;s details to find matching recyclers.</h3>
@@ -85,10 +83,10 @@ const MaterialFilter: React.FC = () => {
             id="primary-material"
             className="filter-select"
             onChange={(e) => setSelectedPrimaryMaterial(e.target.value)}
+            placeholder="select one"
             required
           >
             <option value=""></option>
-            {/* <option placeholder="Select"></option> */}
             {/* to do step 1: map through and render material types as options */}
             {primaryMaterialFilterOptions.map(({ primary_material }) => (
               <option key={primary_material} value={primary_material as string}>
@@ -106,6 +104,7 @@ const MaterialFilter: React.FC = () => {
             className="filter-select"
             id="primary-material-percentage"
             placeholder="100"
+            defaultValue={100}
             min="0"
             max="100"
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -139,7 +138,6 @@ const MaterialFilter: React.FC = () => {
                   type="number"
                   className="filter-select"
                   id="secondary-material-percentage"
-                  placeholder="Material Percentage"
                   min="0"
                   max="100"
                   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -179,15 +177,15 @@ const MaterialFilter: React.FC = () => {
             required
           >
             <option value=""></option>
-            <option value="Post Consumer">Post Consumer</option>
-            <option value="Post Industrial">Post Industrial</option>
+            <option value="Post Consumer">Post consumer</option>
+            <option value="Post Industrial">Post industrial</option>
           </select>
 
           <label className="filter-label" htmlFor="zip">
             Material postal code{' '}
           </label>
           <input
-            type="text"
+            type="number"
             className="filter-select"
             id="zip"
             onChange={(e) => setSelectedZip(e.target.value as string | null)}
