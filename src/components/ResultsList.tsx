@@ -1,22 +1,20 @@
 import React, { useContext } from 'react';
 import { RecyclerContext } from 'src/context/RecyclerMainPage';
-// import { recyclers } from 'src/data';
 import Recycler from './Recycler';
-import './Main/Main.css';
+import './ResultsList.css';
 
 export default function ResultsList() {
   const { recyclerResults } = useContext(RecyclerContext);
 
-  const myStyle = {
-    backgroundImage: `url(${process.env.PUBLIC_URL + '/mustard-fabric.jpeg'})`,
-    width: '100vw',
-    backgroundSize: 'cover',
-    // backgroundRepeat: 'no-repeat',
-  };
+  // const myStyle = {
+  //   backgroundImage: `url(${process.env.PUBLIC_URL + '/mustard-fabric.jpeg'})`,
+  //   width: '100vw',
+  //   backgroundSize: 'cover',
+  //   // backgroundRepeat: 'no-repeat',
+  // };
 
   return (
     <div>
-      {/* <div style={myStyle}> */}
       <div className="results-message-container">
         <div className="results-message">
           <h2>You have {recyclerResults.length} matching recyclers. </h2>
