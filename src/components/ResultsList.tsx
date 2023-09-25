@@ -15,10 +15,11 @@ export default function ResultsList() {
   };
 
   return (
-    <div style={myStyle}>
+    <div>
+      {/* <div style={myStyle}> */}
       <div className="results-message-container">
         <div className="results-message">
-          <h2>You have {recyclerResults.length} matching recyclers: </h2>
+          <h2>You have {recyclerResults.length} matching recyclers. </h2>
           <p>Click on the recycler&apos;s cards below to link to each recycler&apos;s website</p>
         </div>
       </div>
