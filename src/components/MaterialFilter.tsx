@@ -74,10 +74,12 @@ const MaterialFilter: React.FC = () => {
   return (
     <>
       {/* <h1>{recyclers[0].company}</h1> */}
-      <form className="material-filter" onSubmit={handleSubmit}>
-        <h3>Enter your material&apos;s details to find matching recyclers.</h3>
-        <label>
-          Primary material:{' '}
+      <div className="material-filter-container">
+        <form className="material-filter" onSubmit={handleSubmit}>
+          <h3>Enter your material&apos;s details to find matching recyclers.</h3>
+          <label className="filter-label" htmlFor="primary-material">
+            Primary material{' '}
+          </label>
           <select
             autoFocus
             id="primary-material"
@@ -95,9 +97,10 @@ const MaterialFilter: React.FC = () => {
             ))}
             {/* to do step 1: set input state based on user selection */}
           </select>
-        </label>
-        <label>
-          Primary material percentage:{' '}
+
+          <label className="filter-label" htmlFor="primary-material-percentage">
+            Primary material percentage{' '}
+          </label>
           <input
             type="number"
             className="filter-select"
@@ -108,13 +111,14 @@ const MaterialFilter: React.FC = () => {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onChange={(e) => setSelectedPrimaryMinimumPercentage(e.target.value as any)}
           ></input>
-        </label>
-        {/* TO DO: add timeout so secondary material fields don't flash as user starts typing '100' */}
-        {selectedPrimaryMinimumPercentage === null ||
-          (selectedPrimaryMinimumPercentage < 100 && (
-            <>
-              <label>
-                Secondary material:{' '}
+
+          {/* TO DO: add timeout so secondary material fields don't flash as user starts typing '100' */}
+          {selectedPrimaryMinimumPercentage === null ||
+            (selectedPrimaryMinimumPercentage < 100 && (
+              <>
+                <label className="filter-label" htmlFor="secondary-material">
+                  Secondary material:{' '}
+                </label>
                 <select
                   id="secondary-material"
                   className="filter-select"
@@ -128,9 +132,9 @@ const MaterialFilter: React.FC = () => {
                     </option>
                   ))}
                 </select>
-              </label>
-              <label>
-                Secondary material percentage:{' '}
+                <label className="filter-label" htmlFor="secondary-material-percentage">
+                  Secondary material percentage{' '}
+                </label>
                 <input
                   type="number"
                   className="filter-select"
@@ -141,30 +145,33 @@ const MaterialFilter: React.FC = () => {
                   // eslint-disable-next-line @typescript-eslint/no-explicit-any
                   onChange={(e) => setSelectedSecondaryMinimumPercentage(e.target.value as any)}
                 ></input>
-              </label>
-            </>
-          ))}
-        <label>
-          Weight:{' '}
-          <input
-            type="number"
-            className="filter-select"
-            id="weight"
-            required
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            onChange={(e) => setSelectedWeight(e.target.value as any)}
-          ></input>
-          <select
-            className="filter-select"
-            id="unit"
-            onChange={(e) => setSelectedWeightUnit(e.target.value as string)}
-          >
-            <option>lb</option>
-            <option>kg</option>
-          </select>
-        </label>
-        <label>
-          Material source: {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+              </>
+            ))}
+          <label className="filter-label" htmlFor="weight">
+            Weight{' '}
+          </label>
+          <div className="weight-select">
+            <input
+              type="number"
+              className="filter-select"
+              id="weight"
+              required
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              onChange={(e) => setSelectedWeight(e.target.value as any)}
+            ></input>
+            <select
+              className="filter-select"
+              id="unit"
+              onChange={(e) => setSelectedWeightUnit(e.target.value as string)}
+            >
+              <option>lb</option>
+              <option>kg</option>
+            </select>
+          </div>
+
+          <label className="filter-label" htmlFor="material-source">
+            Material source {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+          </label>
           <select
             className="filter-select"
             id="material-source"
@@ -175,9 +182,10 @@ const MaterialFilter: React.FC = () => {
             <option value="Post Consumer">Post Consumer</option>
             <option value="Post Industrial">Post Industrial</option>
           </select>
-        </label>
-        <label>
-          Material postal code:{' '}
+
+          <label className="filter-label" htmlFor="zip">
+            Material postal code{' '}
+          </label>
           <input
             type="text"
             className="filter-select"
@@ -185,9 +193,10 @@ const MaterialFilter: React.FC = () => {
             onChange={(e) => setSelectedZip(e.target.value as string | null)}
             required
           ></input>
-        </label>
-        <label>
-          I&apos;m recycling materials for a:{' '}
+
+          <label className="filter-label" htmlFor="user-group">
+            I&apos;m recycling materials for a{' '}
+          </label>
           <select
             className="filter-select"
             id="user-group"
@@ -198,12 +207,13 @@ const MaterialFilter: React.FC = () => {
             <option value="company">company</option>
             <option value="individual">individual</option>
           </select>
-        </label>
-        <button type="submit" value="submit" className="submit-button">
-          find recyclers
-        </button>
-      </form>
-      {isLoading && <h1>Loading...</h1>}
+
+          <button type="submit" value="submit" className="submit-button">
+            find recyclers
+          </button>
+        </form>
+        {isLoading && <h1>Loading...</h1>}
+      </div>
     </>
   );
 };

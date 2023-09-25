@@ -21,21 +21,22 @@ body {
   --color4: rgb(253, 241, 195);
   --color5: rgb(315, 13, 12);
   --color6: rgb(209, 208, 207);
-  --colorBeige: rgba(228, 201, 196, 0.9);
-  --colorLightOrange: rgb(242, 179, 90);
-  --colorCream: rgb(149, 138, 132);
+  --colorBeige: rgba(240, 210, 203, 0.9);
   --colorBurgundy: rgb(91, 13, 13);
-  --colorTransparentBurgundy: rgba(138, 15, 15, 0.185);
+  --colorCream: rgb(149, 138, 132);
+  --colorLightOrange: rgb(229, 161, 66);
+  --colorCharcoal: rgb(70, 70, 70);
   background-color: var(--colorBeige);
   color: var();
   cursor: default;
   display: flex;
   flex-direction: column;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
   min-height: 100vh;
   justify-content: center;
-  width: 100vw;
+  min-width: 100vw;
 }
+
 button {
   cursor: pointer;
 }

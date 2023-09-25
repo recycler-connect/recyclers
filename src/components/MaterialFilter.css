@@ -1,18 +1,34 @@
+*:focus {
+  box-shadow: rgb(255, 255, 255) 0px 0px 0px 2px, var(--colorLightOrange) 0px 0px 0px 5px;
+  outline: 3px solid transparent;
+  outline-offset: 2px;
+}
+
+*:focus:not(:focus-visible) {
+  box-shadow: none;
+  outline: 3px solid transparent;
+  outline-offset: 2px;
+}
+
+*:focus-visible {
+  box-shadow: rgb(255, 255, 255) 0px 0px 0px 2px, var(--colorLightOrange) 0px 0px 0px 4px;
+  outline: 3px solid transparent;
+  outline-offset: 2px;
+}
+
 .material-filter {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  gap: 5px;
   width: 50vw;
   height: 30%;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.503);
   background-color: rgb(255, 255, 255);
-  /* border: 1px solid var(--colorBurgundy); */
   border-radius: 4px;
-  padding: 15px 40px 15px 40px;
+  padding: 30px 60px;
   gap: 10px;
-  margin: 30px 0 30px 0;
+  margin: 40px;
 }
 
 .submit-button {
@@ -30,4 +46,44 @@
 
 .submit-button:hover {
   transform: scale(1.05); /* Grow the button by 10% */
+}
+
+.filter-label {
+  color: black;
+  margin-bottom: -6px;
+  margin-top: 10px;
+  align-self: flex-start;
+}
+
+.filter-select {
+  border: 1px solid var(--colorCharcoal);
+  border-radius: 4px;
+  font-size: 1.15em;
+  width: 40ch;
+  padding: 0.8rem 1.2rem;
+  width: 100%;
+}
+
+.filter-select:focus:not(:focus-visible) {
+  border-color: var(--colorLightOrange);
+  box-shadow: 0 0 0 2px var(--colorLightOrange);
+}
+
+.filter-select:focus-visible {
+  border-color: var(--colorLightOrange);
+  box-shadow: 0 0 0 2px var(--colorLightOrange);
+}
+
+.weight-select {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+#weight {
+  width: 70%;
+}
+
+#unit {
+  width: 30%;
 }
