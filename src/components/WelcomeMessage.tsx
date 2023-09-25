@@ -1,13 +1,10 @@
 import React from 'react';
-import './Main/Main.css';
+import './WelcomeMessage.css';
 
 const WelcomeMessage = () => {
   const myStyle = {
     backgroundImage: `url(${process.env.PUBLIC_URL + '/red-textiles.jpeg'})`,
-    // height: '50%',
     width: '100vw',
-    // marginTop: '-30px',
-    // fontSize: '40px',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
   };
