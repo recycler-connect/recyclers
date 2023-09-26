@@ -1,22 +1,22 @@
 header {
-  align-items: center;
-  border-bottom: 4px solid var(--color1);
-  color: var(--color4);
-  background-color: white;
   display: flex;
-  height: 110px;
+  align-items: center;
   justify-content: flex-start;
+  height: 110px;
+  width: 100vw;
   padding: 20px;
   gap: 10px;
-  width: 100vw;
+  border-bottom: 4px solid var(--color1);
+  background-color: white;
+  /* color: var(--color4); */
 }
 
-.header-title {
+/* .header-title {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 35px;
   margin: 0;
   color: var(--colorLightOrange);
-}
+} */
 /* .welcome,
 h2 {
   font-size: 2em;

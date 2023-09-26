@@ -58,7 +58,6 @@
 .filter-select {
   border: 1px solid var(--colorCharcoal);
   border-radius: 4px;
-  font-size: 1.15em;
   width: 40ch;
   padding: 0.8rem 1.2rem;
   width: 100%;

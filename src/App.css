@@ -1,4 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap'); */
+
+html {
+  font-size: 18px;
+}
 
 .App {
   height: 100vh;
@@ -6,13 +10,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* font-size: 1.1em; */
-  /* font-family: 'Poppins', sans-serif; */
-  font-family: 'Montserrat', sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
+  word-wrap: break-word;
 }
 
 * {
   box-sizing: border-box;
+}
+
+h1 {
+  font-size: 2.5rem;
+  letter-spacing: 4px;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.3rem;
+}
+
+p {
+  line-height: 1.5;
 }
 
 body {
@@ -32,9 +52,9 @@ body {
   display: flex;
   flex-direction: column;
   /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
-  min-height: 100vh;
+  /* min-height: 100vh; */
   justify-content: center;
-  min-width: 100vw;
+  /* width: 100vw; */
 }
 
 button {
