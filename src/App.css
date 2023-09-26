@@ -60,3 +60,18 @@ body {
 button {
   cursor: pointer;
 }
+
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 2.1rem;
+    letter-spacing: 5px;
+    text-align: center;
+  }
+  h2 {
+    font-size: 1.5rem;
+    line-height: 1.25;
+  }
+  h3 {
+    font-size: 1.2rem;
+  }
+}

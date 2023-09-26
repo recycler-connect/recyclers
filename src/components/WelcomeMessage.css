@@ -14,3 +14,10 @@
   padding: 25px;
   color: white;
 }
+
+@media screen and (max-width: 600px) {
+  .welcome-message {
+    width: 90vw;
+    padding: 10px;
+  }
+}

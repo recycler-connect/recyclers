@@ -86,3 +86,11 @@
 #unit {
   width: 30%;
 }
+
+@media screen and (max-width: 600px) {
+  .material-filter {
+    width: 90vw;
+    padding: 20px 35px;
+    margin: 25px 18px;
+  }
+}
