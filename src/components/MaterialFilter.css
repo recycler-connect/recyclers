@@ -1,13 +1,96 @@
+*:focus {
+  box-shadow: rgb(255, 255, 255) 0px 0px 0px 2px, var(--colorLightOrange) 0px 0px 0px 5px;
+  outline: 3px solid transparent;
+  outline-offset: 2px;
+}
+
+*:focus:not(:focus-visible) {
+  box-shadow: none;
+  outline: 3px solid transparent;
+  outline-offset: 2px;
+}
+
+*:focus-visible {
+  box-shadow: rgb(255, 255, 255) 0px 0px 0px 2px, var(--colorLightOrange) 0px 0px 0px 4px;
+  outline: 3px solid transparent;
+  outline-offset: 2px;
+}
+
 .material-filter {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 80%;
+  justify-content: space-between;
+  width: 50vw;
   height: 30%;
-  border-radius: 5px;
-  box-shadow: 0 0 5px black;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.503);
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
+  padding: 30px 60px;
+  gap: 10px;
+  margin: 40px;
+}
 
-  background-color: var(--colorCream);
+.submit-button {
+  background-color: var(--colorLightOrange);
+  font: var(--colorCream);
+  font-size: large;
+  font-weight: bold;
+  align-self: center;
   padding: 20px;
+  margin: 20px;
+  transition: transform 0.1s ease-in-out;
+  border: none;
+  border-radius: 300px;
+}
+
+.submit-button:hover {
+  transform: scale(1.05); /* Grow the button by 10% */
+}
+
+.filter-label {
+  color: black;
+  margin-bottom: -6px;
+  margin-top: 10px;
+  align-self: flex-start;
+}
+
+.filter-select {
+  border: 1px solid var(--colorCharcoal);
+  border-radius: 4px;
+  width: 40ch;
+  padding: 0.8rem 1.2rem;
+  width: 100%;
+}
+
+.filter-select:focus:not(:focus-visible) {
+  border-color: var(--colorLightOrange);
+  box-shadow: 0 0 0 2px var(--colorLightOrange);
+}
+
+.filter-select:focus-visible {
+  border-color: var(--colorLightOrange);
+  box-shadow: 0 0 0 2px var(--colorLightOrange);
+}
+
+.weight-select {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+#weight {
+  width: 70%;
+}
+
+#unit {
+  width: 30%;
+}
+
+@media screen and (max-width: 600px) {
+  .material-filter {
+    width: 90vw;
+    padding: 20px 35px;
+    margin: 25px 18px;
+  }
 }

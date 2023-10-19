@@ -1,8 +1,8 @@
 .footer {
   align-items: center;
-  background-color: var(--color4);
+  background-color: var(--colorBurgundy);
   border-top: 3px solid var(--color1);
-  color: var(--color2);
+  color: white;
   display: flex;
   height: 40px;
   justify-content: flex-end;

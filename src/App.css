@@ -1,4 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap'); */
+
+html {
+  font-size: 18px;
+}
 
 .App {
   height: 100vh;
@@ -6,30 +10,68 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: Helvetica, Arial, sans-serif;
+  word-wrap: break-word;
 }
 
 * {
   box-sizing: border-box;
 }
 
+h1 {
+  font-size: 2.5rem;
+  letter-spacing: 4px;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.3rem;
+}
+
+p {
+  line-height: 1.5;
+}
+
 body {
   --color1: rgb(31, 3, 24);
   --color2: rgb(229, 242, 201);
-  --color3: rgb(127, 83, 75);
-  --color4: rgb(140, 112, 95);
+  --color4: rgb(253, 241, 195);
   --color5: rgb(315, 13, 12);
-  --color6: rgb(227, 202, 187);
-  --colorCream: rgb(251, 238, 230);
-  background-color: var();
+  --color6: rgb(209, 208, 207);
+  --colorBeige: rgba(240, 210, 203, 0.9);
+  --colorBurgundy: rgb(91, 13, 13);
+  --colorCream: rgb(149, 138, 132);
+  --colorLightOrange: rgb(229, 161, 66);
+  --colorCharcoal: rgb(70, 70, 70);
+  background-color: var(--colorBeige);
   color: var();
   cursor: default;
   display: flex;
   flex-direction: column;
-  font-family: 'Oswald', sans-serif;
-  min-height: 100vh;
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  /* min-height: 100vh; */
   justify-content: center;
-  width: 100%;
+  /* width: 100vw; */
 }
+
 button {
   cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 2.1rem;
+    letter-spacing: 5px;
+    text-align: center;
+  }
+  h2 {
+    font-size: 1.5rem;
+    line-height: 1.25;
+  }
+  h3 {
+    font-size: 1.2rem;
+  }
 }

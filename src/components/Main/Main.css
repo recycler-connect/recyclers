@@ -3,9 +3,9 @@
   flex-direction: column;
   align-items: center;
   min-height: 90vh;
+  min-width: 100vw;
 }
 
-.welcome-message {
-  width: 70%;
-  margin: 15px;
+h2 {
+  margin: 0;
 }
