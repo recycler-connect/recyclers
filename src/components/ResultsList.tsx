@@ -18,7 +18,9 @@ export default function ResultsList() {
       <div className="results-message-container">
         <div className="results-message">
           <h2>You have {recyclerResults.length} matching recyclers. </h2>
-          <p>Click on the recycler&apos;s cards below to link to each recycler&apos;s website</p>
+          {recyclerResults.length !== 0 && (
+            <p>Click on the recycler&apos;s cards below to link to each recycler&apos;s website</p>
+          )}
         </div>
       </div>
       <div className="results-container">
