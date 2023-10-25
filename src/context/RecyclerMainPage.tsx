@@ -1,5 +1,5 @@
-import React, { createContext, useState, Dispatch, SetStateAction, useEffect } from 'react';
-import { getAllRecyclers, getMatchingRecyclers, inputUserSelection } from '../services/recyclers';
+import React, { createContext, useState, Dispatch, SetStateAction } from 'react';
+import { getMatchingRecyclers, inputUserSelection } from '../services/recyclers';
 import Main from 'src/components/Main/Main';
 // to do: create context type file and move types there
 
@@ -121,20 +121,21 @@ const RecyclerMainPage: React.FC = () => {
   const [selectedZip, setSelectedZip] = useState<string | null>(null);
   const [selectedUserGroup, setSelectedUserGroup] = useState<string | null>(null);
   // for later: do we want to refactor useEffect and move to new file: no, keep it here!
-  useEffect(() => {
-    const fetchRecyclerData = async () => {
-      try {
-        const data = await getAllRecyclers();
-        if (data) {
-          setRecyclerResults(data);
-        }
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log('error message in fetch function', error);
-      }
-    };
-    fetchRecyclerData();
-  }, []);
+  // No longer wanting to load all recyclers on initial page render
+  // useEffect(() => {
+  //   const fetchRecyclerData = async () => {
+  //     try {
+  //       const data = await getAllRecyclers();
+  //       if (data) {
+  //         setRecyclerResults(data);
+  //       }
+  //     } catch (error) {
+  //       // eslint-disable-next-line no-console
+  //       console.log('error message in fetch function', error);
+  //     }
+  //   };
+  //   fetchRecyclerData();
+  // }, []);
 
   const fetchMatchingRecyclers = async () => {
     try {
