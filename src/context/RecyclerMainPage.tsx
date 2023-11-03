@@ -27,6 +27,8 @@ export interface SecondaryMaterialOptionType {
 type RecyclerContextType = {
   recyclerResults: RecyclerResultType[];
   setRecyclerResults: Dispatch<SetStateAction<RecyclerResultType[]>>;
+  isInitialLoad: boolean;
+  setIsInitialLoad: Dispatch<SetStateAction<boolean>>;
   isLoading: boolean;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
   error: string;
@@ -63,6 +65,8 @@ const baseContext: RecyclerContextType = {
   setRecyclerResults: () => null,
   isLoading: true,
   setIsLoading: () => true,
+  isInitialLoad: true,
+  setIsInitialLoad: () => true,
   error: '',
   setError: () => '',
   primaryMaterialFilterOptions: [],
@@ -94,6 +98,7 @@ export const RecyclerContext = createContext<RecyclerContextType>(baseContext);
 
 const RecyclerMainPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isInitialLoad, setIsInitialLoad] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
   const [recyclerResults, setRecyclerResults] = useState<RecyclerResultType[]>([]);
   // to do step 1: add state for material types to map through in MaterialFilter input selects
@@ -176,6 +181,7 @@ const RecyclerMainPage: React.FC = () => {
   const onSubmitFilterForm = () => {
     storeUserSelection();
     fetchMatchingRecyclers();
+    setIsInitialLoad(false);
   };
 
   return (
@@ -184,6 +190,8 @@ const RecyclerMainPage: React.FC = () => {
         value={{
           recyclerResults,
           setRecyclerResults,
+          isInitialLoad,
+          setIsInitialLoad,
           isLoading,
           setIsLoading,
           error,
