@@ -4,10 +4,8 @@ import './MaterialFilter.css';
 import { RecyclerContext } from 'src/context/RecyclerMainPage';
 import { getMaterialOptions, getSecondaryMaterialOptions } from 'src/services/recyclers';
 
-// export default function MaterialFilter() {
 const MaterialFilter: React.FC = () => {
   const {
-    primaryMaterialFilterOptions,
     isLoading,
     setIsLoading,
     selectedPrimaryMinimumPercentage,
@@ -16,6 +14,7 @@ const MaterialFilter: React.FC = () => {
     setPrimaryMaterialFilterOptions,
     setSelectedPrimaryMinimumPercentage,
     setError,
+    primaryMaterialFilterOptions,
     secondaryMaterialFilterOptions,
     setSecondaryMaterialFilterOptions,
     setSelectedSecondaryMaterial,
@@ -26,10 +25,8 @@ const MaterialFilter: React.FC = () => {
     setSelectedZip,
     setSelectedUserGroup,
   } = useContext(RecyclerContext);
-  // to do: move fetch options from mainPage
-  // done: move fetchmatching to mainpage
 
-  // to do step 1: create useEffect to fetch all material types
+  // fetch all primary material types for Primary material dropdown
   useEffect(() => {
     setIsLoading(true);
     const fetchMaterialOptions = async () => {
@@ -46,6 +43,7 @@ const MaterialFilter: React.FC = () => {
     fetchMaterialOptions();
   }, [setError, setIsLoading, setPrimaryMaterialFilterOptions]);
 
+  // fetch all secondary material types for Secondary material dropdown
   useEffect(() => {
     setIsLoading(true);
     const fetchSecondaryMaterialOptions = async () => {
@@ -62,11 +60,10 @@ const MaterialFilter: React.FC = () => {
     fetchSecondaryMaterialOptions();
   }, [setError, setIsLoading, setSecondaryMaterialFilterOptions]);
 
-  // to do step 1.5: declare handleSubmit function to update selected input state
+  // handle material filter form submit
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    // call fetch matching recyclers
     onSubmitFilterForm();
   };
 
@@ -75,6 +72,9 @@ const MaterialFilter: React.FC = () => {
       <div className="material-filter-container">
         <form className="material-filter" onSubmit={handleSubmit}>
           <h3>Enter your material&apos;s details to find matching recyclers.</h3>
+
+          {/* render form options and set state based on user selection/input */}
+
           <label className="filter-label" htmlFor="primary-material">
             Primary material{' '}
           </label>
@@ -87,13 +87,12 @@ const MaterialFilter: React.FC = () => {
             required
           >
             <option value=""></option>
-            {/* to do step 1: map through and render material types as options */}
+            {/* map through and render material types as dropdown options */}
             {primaryMaterialFilterOptions.map(({ primary_material }) => (
               <option key={primary_material} value={primary_material as string}>
                 {primary_material}
               </option>
             ))}
-            {/* to do step 1: set input state based on user selection */}
           </select>
 
           <label className="filter-label" htmlFor="primary-material-percentage">
@@ -111,7 +110,7 @@ const MaterialFilter: React.FC = () => {
             onChange={(e) => setSelectedPrimaryMinimumPercentage(e.target.value as any)}
           ></input>
 
-          {/* TO DO: add timeout so secondary material fields don't flash as user starts typing '100' */}
+          {/* render secondary materials dropdowns only if primary materials percentage in null or <100% */}
           {selectedPrimaryMinimumPercentage === null ||
             (selectedPrimaryMinimumPercentage < 100 && (
               <>
@@ -131,6 +130,7 @@ const MaterialFilter: React.FC = () => {
                     </option>
                   ))}
                 </select>
+
                 <label className="filter-label" htmlFor="secondary-material-percentage">
                   Secondary material percentage{' '}
                 </label>
@@ -145,6 +145,7 @@ const MaterialFilter: React.FC = () => {
                 ></input>
               </>
             ))}
+
           <label className="filter-label" htmlFor="weight">
             Weight{' '}
           </label>
@@ -210,6 +211,7 @@ const MaterialFilter: React.FC = () => {
             find recyclers
           </button>
         </form>
+
         {isLoading && <h1>Loading...</h1>}
       </div>
     </>
